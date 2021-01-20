@@ -3,19 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://wangxiao4.github.io/</loc>
+    <loc>http://www.wangxiao4.xyz/</loc>
+    <lastmod>2021-01-20T15:59:43+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://wangxiao4.github.io/categories/</loc>
+    <loc>http://www.wangxiao4.xyz/blog/</loc>
+    <lastmod>2021-01-20T15:59:43+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://wangxiao4.github.io/contact/</loc>
+    <loc>http://www.wangxiao4.xyz/blog/createblog/</loc>
+    <lastmod>2021-01-20T15:59:43+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://wangxiao4.github.io/tags/</loc>
+    <loc>http://www.wangxiao4.xyz/about/</loc>
+    <lastmod>2021-01-20T15:49:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/tags/index/</loc>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/contact/</loc>
   </url>
   
 </urlset>

@@ -1,18 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>800K&#39;s blog </title>
-    <link>https://wangxiao4.github.io/</link>
-    <description>Recent content on 800K&#39;s blog </description>
+    <title>Xiao4 800K</title>
+    <link>http://www.wangxiao4.xyz/</link>
+    <description>Recent content on Xiao4 800K</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://wangxiao4.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
+    <lastBuildDate>Wed, 20 Jan 2021 15:59:43 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>get in touch</title>
-      <link>https://wangxiao4.github.io/contact/</link>
+      <title>Createblog</title>
+      <link>http://www.wangxiao4.xyz/blog/createblog/</link>
+      <pubDate>Wed, 20 Jan 2021 15:59:43 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/createblog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>关于我</title>
+      <link>http://www.wangxiao4.xyz/about/</link>
+      <pubDate>Wed, 20 Jan 2021 15:49:18 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>发邮件给我</title>
+      <link>http://www.wangxiao4.xyz/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wangxiao4.github.io/contact/</guid>
-      <description></description>
+      <guid>http://www.wangxiao4.xyz/contact/</guid>
+      <description>发送</description>
     </item>
     
   </channel>
