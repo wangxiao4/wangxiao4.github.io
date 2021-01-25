@@ -4,12 +4,32 @@
   
   <url>
     <loc>http://www.wangxiao4.xyz/</loc>
-    <lastmod>2021-01-20T15:59:43+08:00</lastmod>
+    <lastmod>2021-01-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://www.wangxiao4.xyz/blog/</loc>
-    <lastmod>2021-01-20T15:59:43+08:00</lastmod>
+    <lastmod>2021-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/tags/book/</loc>
+    <lastmod>2021-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/tags/go/</loc>
+    <lastmod>2021-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/tags/</loc>
+    <lastmod>2021-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/blog/gonote/</loc>
+    <lastmod>2021-01-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -24,14 +44,6 @@
   
   <url>
     <loc>http://www.wangxiao4.xyz/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.wangxiao4.xyz/tags/index/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.wangxiao4.xyz/tags/</loc>
   </url>
   
   <url>

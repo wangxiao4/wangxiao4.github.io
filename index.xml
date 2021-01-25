@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Wed, 20 Jan 2021 15:59:43 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于《Go语言学习笔记》这本书</title>
+      <link>http://www.wangxiao4.xyz/blog/gonote/</link>
+      <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/gonote/</guid>
+      <description>#关于《Go语言学习笔记》这本书
+书如其名，真的算是一本笔记，书中大量篇幅都是代码块，文字介绍较少，基础理论内容也很少， 更多的是对某一些特性和一些用法上做实践，并且如果你细读的话也会发现一些写错的地方。 如果非要嗑这本书 建议先看一遍**《Go by Example 中文版》**，对基本使用和语法有一定了解后再嗑 笔者下卷部分并没有继续看，因为感觉还不到看源码的时候，所以再深造一段时间在回来看一下。 这里粗略的整理一下知识点，没时间看这本书，可以看一下笔者整理的部分，并不全，也只是针对笔者感兴趣的地方进行了整理   defer 延迟操作 无论函数是否发生异常 都会在return后执行 类型别名写法 type myInt = int 类型定义写法 type myInt int 注：类型定义与原始类型无关且不会继承原类型方法 需要强转后才能相互操作 不能前置自增 ++a 不能将自增作为表达式 if(a++)&amp;gt;0 const 常量不能使用取址操作 const a int -&amp;gt; &amp;amp;a 指针指向同一个地址 或者 都为 nil 两个指针相等 当给复合类型赋值时 需要遵守以下规则  必须带有类型名称 var a struct=struct{} {必须紧跟类型后 且在一行 值以 , 隔开 多行情况 尾值以, 或者} 结尾   使用 for range 的时候 for域内将会使用复制后的目标数据，for域内对目标数据操作 不会影响下一次取值，但会影响for域外的目标数据 使用 for range 后的参数如果是方法 那么该方法也只会获取一次 break continue 也可以像 goto 一样增加跳转位置 函数 不支持方法重载，不支持默认参数 ，支持多返回（这点很有意思） 函数采用值拷贝 包括指针类型也是 返回值命名后可以在方法体中当变量使用 最后直接return 无需带返回值 很方便 延迟调用 包括注册和调用，并增加额外的缓存开销，所以性能较直接调用偏低一点 panic和recover是 内置函数 类似于try catch 操作 panic 引发一个错误 recover读取最后一个错误。recover只能在延迟函数 defer 中使用 可以将string看作是byte数组，两者引用地址是相同的，string为只读类型，所以其操作大多需要重新分配内存地址，当有大量使用追加操作，损耗因能严重，并产生相当多的垃圾，建议使用strings.</description>
+    </item>
+    
     <item>
       <title>Createblog</title>
       <link>http://www.wangxiao4.xyz/blog/createblog/</link>
