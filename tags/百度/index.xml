@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>百度 on Xiao4 800K</title>
+    <link>http://www.wangxiao4.xyz/tags/%E7%99%BE%E5%BA%A6/</link>
+    <description>Recent content in 百度 on Xiao4 800K</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
+    <lastBuildDate>Sun, 07 Feb 2021 09:46:11 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/%E7%99%BE%E5%BA%A6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>抓百度下拉框内容</title>
+      <link>http://www.wangxiao4.xyz/blog/bddorpdown/</link>
+      <pubDate>Sun, 07 Feb 2021 09:46:11 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/bddorpdown/</guid>
+      <description>百度？？？你要干嘛 朋友总是有很多奇怪的需求，这次他想要百度搜索智能提示的内容，就是这个
+至于他要干吗用，这个并没有太多去问，只是一时兴起，决定白嫖百度一下 开门见山的说，白嫖不好，如果大家有能力还是去购买相应的接口，等我有钱了就买百度云在抓数据😊
+如何做 朋友给了我一个非常机智的方法
+0. 打开电脑，打开浏览器 1. 让程序模拟用户操作，在浏览器的输入框中输入预存的词组 2. 截取当前浏览器的显示截图 3. 程序识别图中内容 4. 将内容保存到本地  至此完成一次操作，后续就是无限循环的抓取动作
+我的想法就比较简单粗暴了，因为数据不可能缓存在本地，所以每次输入内容，百度一定会回服务器抓取的， 于是我打开浏览器，控制台监控浏览器的请求，发现了一些频率较高的重复Get请求，打开一看，哎嘿……这是啥
+整理下思路 众所周知，百度引擎会爬各种网站的数据，所以爬虫对他们来说那是相当的熟悉，所以肯定会限制我们爬取他们 那么首要任务就是要测试这些Get请求是否有限制，最简单的方法直接PostMan测试一下，修改各种参数，头信息， 如果能够正常返回，剩下就是我们如何处理这些数据了
+杨帆启航 0. 查找接口 1. 首先PostMan测试接口情况 2. 整理数据 3. 编写脚本 4. 运行测试 5. 简单压测   结果五根线程110词在2秒完成 ……666 最后附赠测试代码地址 csdn：https://download.csdn.net/download/at555444/15118651  </description>
+    </item>
+    
+  </channel>
+</rss>
