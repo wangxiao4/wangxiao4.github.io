@@ -7,7 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Sun, 07 Feb 2021 09:46:11 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Feb 2021 11:16:44 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>抓百度下拉框内容-续篇</title>
+      <link>http://www.wangxiao4.xyz/blog/bdword/</link>
+      <pubDate>Tue, 09 Feb 2021 11:16:44 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/bdword/</guid>
+      <description>百度？？？你又要干嘛 朋友总是有很多奇怪的需求，由于之前给他的抓取方式并不是他心仪的方式，所以这他说如果很难的话就先不要弄了 作为一名身经百战的程序员，这无疑是赤果果的挑衅，那么咱们这次还是抓这个
+那么咱们重新梳理一下思路
+0. 打开电脑，打开浏览器 1. 让程序模拟用户操作，在浏览器的输入框中输入预存的词组 2. 截取当前浏览器的显示截图 3. 程序识别图中内容 4. 将内容保存到本地  如此往复1-4步 完成所有数据抓取
+如何做  首先考虑浏览器问题  通常大厂的浏览器都会开放一些接口，可以帮助我们实现一些定制化的任务，但是通常都是通过脚本插件类型去完成， 但是考虑到有一些繁琐的操作在里面，这些接口可能并不够用，所以我认为将浏览器内嵌入程序中会更适合我们的操作
+ 如何内嵌那？  我使用了C#作为这个程序的编码语言，因为对我个人来说对C#的把控比其他语言更好一些，并且轮子也比较多，更符合快速响应的要求 内嵌浏览器并不是什么难事，.net平台本身有基于IE的浏览器控件可用，但是谁用谁知道，鸡肋的很，所以果断选择其他浏览器
+ 那么选择什么浏览器比较好？  无疑基于谷歌浏览器内核是首选的，为什么那？？？因为更喜欢谷歌😊 CefSharp Chromium-based browser 自行搜索该控件如何用吧
+ 图像识别  同样各种线上线下的都有很多，我们该如何选哪？商用并且不差钱当然首选大厂的库，方便快捷又卫生， 而且还有各种活动。自己做实验，用于玩具的当然希望接触的越多越底层越好。所以综合我们目前需求，选择了开源的OCR库。
+1. chineseocr_lite 对中文内容更精准 2. Tesseract-OCR 也是不错的选择，人气高  我使用了chineseocr_lite，因为我希望我不需要再次训练它的情况下完成现在的任务
+再次整理下思路 1. 开启程序 2. 程序自动加载网页 3. 网页加载完成后截图 4. 初始化所有环境 5. 输入预查询的内容 6. 截图 7. 识别 保存 8. 循环5-7至所有查询内容都处理完毕  扬帆启航 1. 整理所有需要用的库并简单测试 2.</description>
+    </item>
+    
     <item>
       <title>抓百度下拉框内容</title>
       <link>http://www.wangxiao4.xyz/blog/bddorpdown/</link>

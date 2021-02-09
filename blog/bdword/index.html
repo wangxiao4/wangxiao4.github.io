@@ -87,65 +87,92 @@
             <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
             <div class="content">
     
-    <h1 id="title">抓百度下拉框内容</h1>
+    <h1 id="title">抓百度下拉框内容-续篇</h1>
     
       
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#百度你要干嘛">百度？？？你要干嘛</a></li>
+    <li><a href="#百度你又要干嘛">百度？？？你又要干嘛</a></li>
     <li><a href="#如何做">如何做</a></li>
-    <li><a href="#整理下思路">整理下思路</a></li>
+    <li><a href="#再次整理下思路">再次整理下思路</a></li>
     <li><a href="#扬帆启航">扬帆启航</a></li>
+    <li><a href="#最后的一嘴">最后的一嘴</a></li>
   </ul>
 </nav>
-    <h2 id="百度你要干嘛">百度？？？你要干嘛</h2>
-<p>朋友总是有很多奇怪的需求，这次他想要百度搜索智能提示的内容，就是这个</p>
+    <h2 id="百度你又要干嘛">百度？？？你又要干嘛</h2>
+<p>朋友总是有很多奇怪的需求，由于之前给他的抓取方式并不是他心仪的方式，所以这他说如果很难的话就先不要弄了
+作为一名身经百战的程序员，这无疑是赤果果的挑衅，那么咱们这次还是抓这个</p>
 <p><img src="http://www.wangxiao4.xyz/file/imgs/2021/2/baiduDropdown.png" alt="提示内容" width="400" height="400" align="center" /></p>
-<p>至于他要干吗用，这个并没有太多去问，只是一时兴起，决定白嫖百度一下
-开门见山的说，白嫖不好，如果大家有能力还是去购买相应的接口，等我有钱了就买百度云在抓数据😊</p>
-<h2 id="如何做">如何做</h2>
-<p>朋友给了我一个非常机智的方法</p>
+<p>那么咱们重新梳理一下思路</p>
 <pre><code>0. 打开电脑，打开浏览器
 1. 让程序模拟用户操作，在浏览器的输入框中输入预存的词组
 2. 截取当前浏览器的显示截图
 3. 程序识别图中内容
 4. 将内容保存到本地
 </code></pre>
-<p>至此完成一次操作，后续就是无限循环的抓取动作</p>
-<p>我的想法就比较简单粗暴了，因为数据不可能缓存在本地，所以每次输入内容，百度一定会回服务器抓取的，
-于是我打开浏览器，控制台监控浏览器的请求，发现了一些频率较高的重复Get请求，打开一看，哎嘿……这是啥</p>
-<img src="http://www.wangxiao4.xyz/file/imgs/2021/2/GetPath.png" alt="查找接口" width="400" height="400"/>
-<h2 id="整理下思路">整理下思路</h2>
-<p>众所周知，百度引擎会爬各种网站的数据，所以爬虫对他们来说那是相当的熟悉，所以肯定会限制我们爬取他们
-那么首要任务就是要测试这些Get请求是否有限制，最简单的方法直接PostMan测试一下，修改各种参数，头信息，
-如果能够正常返回，剩下就是我们如何处理这些数据了</p>
-<img src="http://www.wangxiao4.xyz/file/imgs/2021/2/postman.png" alt="postman" width="400" height="400"/>
-<h2 id="扬帆启航">扬帆启航</h2>
-<pre><code>0. 查找接口
-1. 首先PostMan测试接口情况
-2. 整理数据
-3. 编写脚本
-4. 运行测试
-5. 简单压测
-</code></pre>
-<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/2/test_20210207143012.png" alt="压测"></p>
+<p>如此往复1-4步 完成所有数据抓取</p>
+<h2 id="如何做">如何做</h2>
 <ul>
-<li>结果五根线程110词在2秒完成 ……666</li>
-<li>最后附赠GO语言测试代码地址</li>
-<li>csdn：https://download.csdn.net/download/at555444/15118651</li>
+<li>首先考虑浏览器问题</li>
+</ul>
+<p>通常大厂的浏览器都会开放一些接口，可以帮助我们实现一些定制化的任务，但是通常都是通过脚本插件类型去完成，
+但是考虑到有一些繁琐的操作在里面，这些接口可能并不够用，所以我认为将浏览器内嵌入程序中会更适合我们的操作</p>
+<ul>
+<li>如何内嵌那？</li>
+</ul>
+<p>我使用了C#作为这个程序的编码语言，因为对我个人来说对C#的把控比其他语言更好一些，并且轮子也比较多，更符合快速响应的要求
+内嵌浏览器并不是什么难事，.net平台本身有基于IE的浏览器控件可用，但是谁用谁知道，鸡肋的很，所以果断选择其他浏览器</p>
+<ul>
+<li>那么选择什么浏览器比较好？</li>
+</ul>
+<p>无疑基于谷歌浏览器内核是首选的，为什么那？？？因为更喜欢谷歌😊
+CefSharp Chromium-based browser
+自行搜索该控件如何用吧</p>
+<ul>
+<li>图像识别</li>
+</ul>
+<p>同样各种线上线下的都有很多，我们该如何选哪？商用并且不差钱当然首选大厂的库，方便快捷又卫生，
+而且还有各种活动。自己做实验，用于玩具的当然希望接触的越多越底层越好。所以综合我们目前需求，选择了开源的OCR库。</p>
+<pre><code>1. chineseocr_lite 对中文内容更精准
+2. Tesseract-OCR 也是不错的选择，人气高
+</code></pre>
+<p>我使用了chineseocr_lite，因为我希望我不需要再次训练它的情况下完成现在的任务</p>
+<h2 id="再次整理下思路">再次整理下思路</h2>
+<pre><code>1. 开启程序
+2. 程序自动加载网页
+3. 网页加载完成后截图
+4. 初始化所有环境
+5. 输入预查询的内容
+6. 截图
+7. 识别 保存
+8. 循环5-7至所有查询内容都处理完毕
+</code></pre>
+<h2 id="扬帆启航">扬帆启航</h2>
+<pre><code>1. 整理所有需要用的库并简单测试
+2. 整合资源并处理版本或资源的异常
+3. 增加主体逻辑
+4. 压测以及可用性测试
+</code></pre>
+<h2 id="最后的一嘴">最后的一嘴</h2>
+<p>这里并没有讲过多的技术点，我更希望带给你的是一种思路，解决问题的思路，和一种不屈的精神</p>
+<ul>
+<li>附赠C#源码地址</li>
+<li>GitHub：https://github.com/wangxiao4/WebWordTake.git</li>
+<li>附赠编译后的地址</li>
+<li>百度云：链接：https://pan.baidu.com/s/1OsSbothsENfQl4LVBCEZEw 提取码：ko7g</li>
 </ul>
 
     
     <div class="nav-next-prev">
         <div class="nav-prev">
             
-                <a href="http://www.wangxiao4.xyz/blog/chromeproxy/"><i class="fas fa-chevron-left"></i></a>
+                <a href="http://www.wangxiao4.xyz/blog/bddorpdown/"><i class="fas fa-chevron-left"></i></a>
             
         </div>
         <a class="nav-top" href="#">top</i></a>
         <div class="nav-next">
             
-                <a href="http://www.wangxiao4.xyz/blog/bdword/"><i class="fas fa-chevron-right"></i></a>
+                <a class="grayed-out" href="javascript:void()"><i class="fas fa-chevron-right"></i></a>
             
         </div>
     </div>
