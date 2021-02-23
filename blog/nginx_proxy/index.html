@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="誓要成为年入800K的技术人">
+    <meta name="Author" content="Xiao4 800K">
+    <meta name="keywords" content="小四的博客">
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/syntax.css>
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/style.css>
+    <script src="https://kit.fontawesome.com/1b7478c139.js" crossorigin="anonymous"></script>
+    <title>Xiao4 800K</title>
+  </head><body><aside id="sidenav">
+    <header>
+    
+        <a href=http://www.wangxiao4.xyz/><img src="http://www.wangxiao4.xyz/avatar.png" alt="avatar"></a>
+        
+    
+
+    <a id="branding" href=http://www.wangxiao4.xyz/>
+        
+            Xiao4 800K
+        
+    </a>
+	<span>
+		
+            誓要成为年入800K的技术人
+        
+	</span>
+	<br/>
+    </header>
+
+    <nav>
+        
+            		
+            <a href="/blog/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>博文</span>
+            </a>
+        
+            		
+            <a href="/about"
+                
+            >
+                <i class="fas fa-home fa-sm"></i>
+                <span>关于</span>
+            </a>
+        
+            		
+            <a href="/tags"
+                
+            >
+                <i class="fas fa-tags fa-ms"></i>
+                <span>标签</span>
+            </a>
+        
+            		
+            <a href="https://github.com/wangxiao4"
+                
+                    target="_blank"
+                
+            >
+                <i class="fab fa-github fa-ms"></i>
+                <span>代码</span>
+            </a>
+        
+            		
+            <a href="/index.xml"
+                
+            >
+                <i class="fas fa-rss fa-ms"></i>
+                <span>RSS</span>
+            </a>
+        
+            		
+            <a href="/contact"
+                
+            >
+                <i class="far fa-envelope"></i>
+                <span>留言</span>
+            </a>
+        
+    </nav>
+</aside>
+<main id="main">
+            <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
+            <div class="content">
+    
+    <h1 id="title">Nginx玩法 — 正向代理</h1>
+    
+      
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#nginx玩法--正向代理">Nginx玩法 — 正向代理</a>
+      <ul>
+        <li><a href="#使用">使用</a></li>
+        <li><a href="#测试">测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#nginx常用命令">Nginx常用命令</a></li>
+  </ul>
+</nav>
+    <h2 id="nginx玩法--正向代理">Nginx玩法 — 正向代理</h2>
+<p>正向代理</p>
+<p>你请求代理帮你完成某件事情，代理将办理结果通知回你，类似于fan个qiang，访问谷歌，或者VPN。</p>
+<p>举个例子比如：</p>
+<pre><code>你去商店买了一瓶水，店员直接卖给你一瓶，这中间没有任何其他参与者，你和店员之间就相当于没有代理
+</code></pre>
+<p>相反</p>
+<pre><code>如果你在打游戏，拜托你的朋友帮你买一瓶农夫山泉，朋友借此去市区见狐朋，到市区买了他最爱的运动耳机，
+和狐朋吃了个饭并吐槽了一下要带水回去后，打包了剩菜剩饭，胡朋从河边灌了一瓶水，朋友带回来给你，最终你获得了一瓶水和晚饭。
+</code></pre>
+<p>这里可以将你看作客户端，狐朋狗友看作是代理，买一瓶农夫山泉是你的请求，狐朋狗友的一系列操作是数据传递和处理的过程</p>
+<p>通过上面的例子，我们可以大概知道正向代理的几个特点</p>
+<pre><code>    1. 代理在客户端与终端之间
+    2. 对客户端屏蔽了终端的具体实现 （你不知道水是哪里买到的，也不知道最终是由谁完成的，你并不清楚是胡朋在河边灌的水）
+    3. 隐藏了客户端对终端的身份	（胡朋并不知道你的存在）
+    4. 可以帮你绕过限制达到最终目的（你在打游戏，无法自己去买水）
+    5. 具有信息过滤和加强的功能（朋友去除了你想要农夫山泉的数据，还给你带了晚饭）
+    6. 可以加速结果返回（如果朋友接收到要水的请求直接到厨房倒了一杯给你的话会节省很多时间）
+</code></pre>
+<h3 id="使用">使用</h3>
+<p>用到的属性有</p>
+<pre><code>1. resolver 这里可以根据自己的需求修改DNS
+2. listen 配置监听的端口号
+3. location 如果有个别路径需要特殊处理，可以适当增加规则
+4. proxy_pass 这里通常时不变的
+</code></pre>
+<p>关键代码如下</p>
+<pre><code>server {
+    resolver 8.8.8.8;	
+    listen 80;		
+    location / {
+        proxy_pass http://$http_host$request_uri;	
+    }
+}
+</code></pre>
+<p>将上述代码嵌入到 nginx.conf 的 http 代码块中即可</p>
+<h3 id="测试">测试</h3>
+<p>可以使用火狐浏览器做测试，设置代理为Nginx的IP和端口</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/2/firefoxproxy.png" alt="设置代理"></p>
+<p>设置成功后访问网址都会在日志文件中有记录</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/2/nginxproxylog.png" alt="日志"></p>
+<h2 id="nginx常用命令">Nginx常用命令</h2>
+<pre><code>1. nginx -v				|	简洁版版本信息
+2. nginx -V				|	详细的版本信息
+3. nginx -t				|	检测配置信息是否正确
+4. start nginx			|	启动nginx
+5. nginx -s stop		|	快速停止关闭
+6. nginx -s quit		|	正常停止关闭
+7. nginx -s reload		|	重新装载配置
+
+* 注：在不同的系统稍有区别 比如在CentOS中需要使用“./nginx” 指定nginx。
+</code></pre>
+
+    
+    <div class="nav-next-prev">
+        <div class="nav-prev">
+            
+                <a href="http://www.wangxiao4.xyz/blog/baidu3/"><i class="fas fa-chevron-left"></i></a>
+            
+        </div>
+        <a class="nav-top" href="#">top</i></a>
+        <div class="nav-next">
+            
+                <a class="grayed-out" href="javascript:void()"><i class="fas fa-chevron-right"></i></a>
+            
+        </div>
+    </div>
+    
+
+            </div><footer>
+<div class="footer-content">
+
+  <div class="contact-info">
+      
+          <div class="footer-mail">
+          <i class="far fa-envelope"></i> <a href="mailto:840076909@QQ.COM">840076909@QQ.COM</a> </div>
+      
+      
+  </div>
+
+
+<p class="copyright meta">版权所有©2019–2021，Xiao4 800K；保留所有权利。</p>
+
+</div>
+</footer></main>
+    </body>
+    <script src=http://www.wangxiao4.xyz/js/navbutton.js></script>
+</html>

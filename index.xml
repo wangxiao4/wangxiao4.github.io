@@ -7,7 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Fri, 19 Feb 2021 10:14:45 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Feb 2021 17:19:13 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nginx玩法 — 正向代理</title>
+      <link>http://www.wangxiao4.xyz/blog/nginx_proxy/</link>
+      <pubDate>Tue, 23 Feb 2021 17:19:13 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/nginx_proxy/</guid>
+      <description>Nginx玩法 — 正向代理 正向代理
+你请求代理帮你完成某件事情，代理将办理结果通知回你，类似于fan个qiang，访问谷歌，或者VPN。
+举个例子比如：
+你去商店买了一瓶水，店员直接卖给你一瓶，这中间没有任何其他参与者，你和店员之间就相当于没有代理  相反
+如果你在打游戏，拜托你的朋友帮你买一瓶农夫山泉，朋友借此去市区见狐朋，到市区买了他最爱的运动耳机， 和狐朋吃了个饭并吐槽了一下要带水回去后，打包了剩菜剩饭，胡朋从河边灌了一瓶水，朋友带回来给你，最终你获得了一瓶水和晚饭。  这里可以将你看作客户端，狐朋狗友看作是代理，买一瓶农夫山泉是你的请求，狐朋狗友的一系列操作是数据传递和处理的过程
+通过上面的例子，我们可以大概知道正向代理的几个特点
+ 1. 代理在客户端与终端之间 2. 对客户端屏蔽了终端的具体实现 （你不知道水是哪里买到的，也不知道最终是由谁完成的，你并不清楚是胡朋在河边灌的水） 3. 隐藏了客户端对终端的身份	（胡朋并不知道你的存在） 4. 可以帮你绕过限制达到最终目的（你在打游戏，无法自己去买水） 5. 具有信息过滤和加强的功能（朋友去除了你想要农夫山泉的数据，还给你带了晚饭） 6. 可以加速结果返回（如果朋友接收到要水的请求直接到厨房倒了一杯给你的话会节省很多时间）  使用 用到的属性有
+1. resolver 这里可以根据自己的需求修改DNS 2. listen 配置监听的端口号 3. location 如果有个别路径需要特殊处理，可以适当增加规则 4. proxy_pass 这里通常时不变的  关键代码如下
+server { resolver 8.8.8.8;	listen 80;	location / { proxy_pass http://$http_host$request_uri;	} }  将上述代码嵌入到 nginx.conf 的 http 代码块中即可
+测试 可以使用火狐浏览器做测试，设置代理为Nginx的IP和端口
+设置成功后访问网址都会在日志文件中有记录
+Nginx常用命令 1. nginx -v	|	简洁版版本信息 2.</description>
+    </item>
+    
     <item>
       <title>抓各种页面数据</title>
       <link>http://www.wangxiao4.xyz/blog/baidu3/</link>
