@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="誓要成为年入800K的技术人">
+    <meta name="Author" content="Xiao4 800K">
+    <meta name="keywords" content="小四的博客">
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/syntax.css>
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/style.css>
+    <script src="https://kit.fontawesome.com/1b7478c139.js" crossorigin="anonymous"></script>
+    <title>Xiao4 800K</title>
+  </head><body><aside id="sidenav">
+    <header>
+    
+        <a href=http://www.wangxiao4.xyz/><img src="http://www.wangxiao4.xyz/avatar.png" alt="avatar"></a>
+        
+    
+
+    <a id="branding" href=http://www.wangxiao4.xyz/>
+        
+            Xiao4 800K
+        
+    </a>
+	<span>
+		
+            誓要成为年入800K的技术人
+        
+	</span>
+	<br/>
+    </header>
+
+    <nav>
+        
+            		
+            <a href="/blog/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>博文</span>
+            </a>
+        
+            		
+            <a href="/about"
+                
+            >
+                <i class="fas fa-home fa-sm"></i>
+                <span>关于</span>
+            </a>
+        
+            		
+            <a href="/tags"
+                
+            >
+                <i class="fas fa-tags fa-ms"></i>
+                <span>标签</span>
+            </a>
+        
+            		
+            <a href="https://github.com/wangxiao4"
+                
+                    target="_blank"
+                
+            >
+                <i class="fab fa-github fa-ms"></i>
+                <span>代码</span>
+            </a>
+        
+            		
+            <a href="/index.xml"
+                
+            >
+                <i class="fas fa-rss fa-ms"></i>
+                <span>RSS</span>
+            </a>
+        
+            		
+            <a href="/contact"
+                
+            >
+                <i class="far fa-envelope"></i>
+                <span>留言</span>
+            </a>
+        
+    </nav>
+</aside>
+<main id="main">
+            <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
+            <div class="content">
+    
+    <h1 id="title">Nginx玩法 — 反向代理</h1>
+    
+      
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#nginx玩法--反向代理">Nginx玩法 — 反向代理</a>
+      <ul>
+        <li><a href="#举个例子">举个例子</a></li>
+        <li><a href="#特点">特点</a></li>
+        <li><a href="#使用">使用</a></li>
+        <li><a href="#扩充">扩充</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    <h2 id="nginx玩法--反向代理">Nginx玩法 — 反向代理</h2>
+<p>Nginx的反向代理是一块比较常用且重要的功能，查看一下关于反向代理的指令，你就体会到有多重要了，否则也不会给出20+的指令，翻看一下在上一篇正向代理用到的指令，一个手的就能数的完了。</p>
+<p>那么在开始愉快玩耍之前还是要先搞清楚，这个反向代理到底是什么意思。</p>
+<h3 id="举个例子">举个例子</h3>
+<pre><code>    有这么一天，狐朋带着狗友，去市区中心吃饭，由于这地段只有这一家川菜馆，所以生意火爆,川菜馆事先将常见的菜品都准备好，
+但是依然无法满足需求量，川菜馆就雇佣了多个大厨，这些大厨手艺有高有低，其中有一个大厨外号“盐不要钱”，恰好给狐朋狗友做菜的就是他，
+狐朋狗友吃了这菜后，差点没过去，如果不是餐馆经理拦着估计就是给“盐不要钱”一顿好果子，最终餐厅辞退了“盐不要钱”，
+狐朋狗友将剩菜剩饭打包后带走
+</code></pre>
+<p>我们可以将狐朋和狗友看作是客户端，川菜馆看作是反向代理服务器，厨子们是最终的服务器，可以简单看作反向代理包含着最终服务器</p>
+<h3 id="特点">特点</h3>
+<p>由上述例子可以看出反向代理的几个特点</p>
+<pre><code>1. 具有加速访问的功能（事先准备好常见的菜品）
+2. 对客户端隐藏了真正的服务端（客户并不知道，哪个大厨做的）
+3. 对服务器具有保护作用（餐厅工作人员屏蔽掉了狐朋狗友想打厨子的请求）
+4. 具有信息增强和筛选的功能（将不同的菜品分给凉菜师傅和热菜师傅，口味还要看师傅心情）
+</code></pre>
+<h3 id="使用">使用</h3>
+<p>简单的Hello World，将代码嵌入到 http 代码块中即可。</p>
+<pre><code>server{
+    listen 80;
+    server_name localhost;
+    location / {
+        porxy_pass http://127.0.0.1:8080;
+    }
+}
+</code></pre>
+<p>我们看一下这几个参数：</p>
+<pre><code>1. listen 代理监听的端口号，根据自己的情况编写即可
+2. server_name 服务名称用于匹配请求，也可以写成自定义的域名，但需要额外的映射配置
+3. location 监听全部请求，根据需求追加修改规则
+4. proxy_pass 配置被代理地址可以是ip也可以是主机名称，还可以是upstream(后续说到)
+</code></pre>
+<p>这样我们一个基础的反向代理就搭建完成了，nginx -s reload 重新加载配置后，试着跑一下</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/2/rp_test.png" alt="测试"></p>
+<p>这样我就看到了代理的 tomcat ，再查看一下我们的日志</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/2/rp_log.png" alt="测试"></p>
+<h3 id="扩充">扩充</h3>
+<p>接下来我们再看一下反向代理常用的一些指令</p>
+<ol>
+<li>proxy_pass upstream 通常我们会开启多个服务提高系统的可用性，在nginx中通过定义upstream将多个服务划分为一个组供代理使用，同时还可以设置模式，常见有顺序模式，权重模式和哈希模式，就是再原有基础上增加参数即可具体可参考其他博文的写法</li>
+<li>信息头和信息主体的指令，
+. proxy_hide_header 隐藏的头域信息
+. proxy_pass_header 设置被转发的头域信息
+. proxy_pass_request_body 是否将客户端请求发送给代理服务器
+. proxy_pass_request_headers 是否将请求头发送给代理服务器
+. proxy_set_header 修改客户端请求头域信息
+. proxy_set_body 修改客户端请求体信息</li>
+<li>时间相关
+. proxy_connect_timeout nginx与被代理服务建立连接的超时时间
+. proxy_read_timeout read请求等待响应的超时时间
+. proxy_send_timeout write请求等待响应的超时时间
+. 以上默认时间都是60秒</li>
+<li>还有一些关于缓存，缓冲和请求相关的指令暂时不一一列举，后续还有机会</li>
+</ol>
+<p>暂且书写至此。</p>
+
+    
+    <div class="nav-next-prev">
+        <div class="nav-prev">
+            
+                <a href="http://www.wangxiao4.xyz/blog/nginx_proxy/"><i class="fas fa-chevron-left"></i></a>
+            
+        </div>
+        <a class="nav-top" href="#">top</i></a>
+        <div class="nav-next">
+            
+                <a class="grayed-out" href="javascript:void()"><i class="fas fa-chevron-right"></i></a>
+            
+        </div>
+    </div>
+    
+
+            </div><footer>
+<div class="footer-content">
+
+  <div class="contact-info">
+      
+          <div class="footer-mail">
+          <i class="far fa-envelope"></i> <a href="mailto:840076909@QQ.COM">840076909@QQ.COM</a> </div>
+      
+      
+  </div>
+
+
+<p class="copyright meta">版权所有©2019–2021，Xiao4 800K；保留所有权利。</p>
+
+</div>
+</footer></main>
+    </body>
+    <script src=http://www.wangxiao4.xyz/js/navbutton.js></script>
+</html>

@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Tue, 23 Feb 2021 17:19:13 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Feb 2021 14:27:56 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nginx玩法 — 反向代理</title>
+      <link>http://www.wangxiao4.xyz/blog/reverseproxy/</link>
+      <pubDate>Thu, 25 Feb 2021 14:27:56 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/reverseproxy/</guid>
+      <description>Nginx玩法 — 反向代理 Nginx的反向代理是一块比较常用且重要的功能，查看一下关于反向代理的指令，你就体会到有多重要了，否则也不会给出20+的指令，翻看一下在上一篇正向代理用到的指令，一个手的就能数的完了。
+那么在开始愉快玩耍之前还是要先搞清楚，这个反向代理到底是什么意思。
+举个例子  有这么一天，狐朋带着狗友，去市区中心吃饭，由于这地段只有这一家川菜馆，所以生意火爆,川菜馆事先将常见的菜品都准备好， 但是依然无法满足需求量，川菜馆就雇佣了多个大厨，这些大厨手艺有高有低，其中有一个大厨外号“盐不要钱”，恰好给狐朋狗友做菜的就是他， 狐朋狗友吃了这菜后，差点没过去，如果不是餐馆经理拦着估计就是给“盐不要钱”一顿好果子，最终餐厅辞退了“盐不要钱”， 狐朋狗友将剩菜剩饭打包后带走  我们可以将狐朋和狗友看作是客户端，川菜馆看作是反向代理服务器，厨子们是最终的服务器，可以简单看作反向代理包含着最终服务器
+特点 由上述例子可以看出反向代理的几个特点
+1. 具有加速访问的功能（事先准备好常见的菜品） 2. 对客户端隐藏了真正的服务端（客户并不知道，哪个大厨做的） 3. 对服务器具有保护作用（餐厅工作人员屏蔽掉了狐朋狗友想打厨子的请求） 4. 具有信息增强和筛选的功能（将不同的菜品分给凉菜师傅和热菜师傅，口味还要看师傅心情）  使用 简单的Hello World，将代码嵌入到 http 代码块中即可。
+server{ listen 80; server_name localhost; location / { porxy_pass http://127.0.0.1:8080; } }  我们看一下这几个参数：
+1. listen 代理监听的端口号，根据自己的情况编写即可 2. server_name 服务名称用于匹配请求，也可以写成自定义的域名，但需要额外的映射配置 3. location 监听全部请求，根据需求追加修改规则 4. proxy_pass 配置被代理地址可以是ip也可以是主机名称，还可以是upstream(后续说到)  这样我们一个基础的反向代理就搭建完成了，nginx -s reload 重新加载配置后，试着跑一下
+这样我就看到了代理的 tomcat ，再查看一下我们的日志
+扩充 接下来我们再看一下反向代理常用的一些指令
+ proxy_pass upstream 通常我们会开启多个服务提高系统的可用性，在nginx中通过定义upstream将多个服务划分为一个组供代理使用，同时还可以设置模式，常见有顺序模式，权重模式和哈希模式，就是再原有基础上增加参数即可具体可参考其他博文的写法 信息头和信息主体的指令， .</description>
+    </item>
+    
     <item>
       <title>Nginx玩法 — 正向代理</title>
       <link>http://www.wangxiao4.xyz/blog/nginx_proxy/</link>
