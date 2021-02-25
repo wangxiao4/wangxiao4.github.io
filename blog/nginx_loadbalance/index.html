@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="誓要成为年入800K的技术人">
+    <meta name="Author" content="Xiao4 800K">
+    <meta name="keywords" content="小四的博客">
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/syntax.css>
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/style.css>
+    <script src="https://kit.fontawesome.com/1b7478c139.js" crossorigin="anonymous"></script>
+    <title>Xiao4 800K</title>
+  </head><body><aside id="sidenav">
+    <header>
+    
+        <a href=http://www.wangxiao4.xyz/><img src="http://www.wangxiao4.xyz/avatar.png" alt="avatar"></a>
+        
+    
+
+    <a id="branding" href=http://www.wangxiao4.xyz/>
+        
+            Xiao4 800K
+        
+    </a>
+	<span>
+		
+            誓要成为年入800K的技术人
+        
+	</span>
+	<br/>
+    </header>
+
+    <nav>
+        
+            		
+            <a href="/blog/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>博文</span>
+            </a>
+        
+            		
+            <a href="/about"
+                
+            >
+                <i class="fas fa-home fa-sm"></i>
+                <span>关于</span>
+            </a>
+        
+            		
+            <a href="/tags"
+                
+            >
+                <i class="fas fa-tags fa-ms"></i>
+                <span>标签</span>
+            </a>
+        
+            		
+            <a href="https://github.com/wangxiao4"
+                
+                    target="_blank"
+                
+            >
+                <i class="fab fa-github fa-ms"></i>
+                <span>代码</span>
+            </a>
+        
+            		
+            <a href="/index.xml"
+                
+            >
+                <i class="fas fa-rss fa-ms"></i>
+                <span>RSS</span>
+            </a>
+        
+            		
+            <a href="/contact"
+                
+            >
+                <i class="far fa-envelope"></i>
+                <span>留言</span>
+            </a>
+        
+    </nav>
+</aside>
+<main id="main">
+            <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
+            <div class="content">
+    
+    <h1 id="title">Nginx玩法 — 负载均衡</h1>
+    
+      
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#nginx玩法--负载均衡">Nginx玩法 — 负载均衡</a>
+      <ul>
+        <li><a href="#举个例子">举个例子</a></li>
+        <li><a href="#那么在nginx中如何使用那">那么在Nginx中如何使用那？</a></li>
+        <li><a href="#最后">最后</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    <h2 id="nginx玩法--负载均衡">Nginx玩法 — 负载均衡</h2>
+<p>首先我们需要弄清楚负载均衡的含义，负载均衡是通过算法实现平均分配的策略，将数据交互平均分担到集群中的各个服务中，从而提高整体对外服务的可用性，健壮性和性能等。</p>
+<p>负载均衡是Nginx中较为重要的功能，常用于站点级的负载策略之中，相对于使用专属硬件做负载，拥有维护方便，成本低等特点，所以在日常系统中Nginx做负载也是不错的选择。</p>
+<h3 id="举个例子">举个例子</h3>
+<pre><code>川菜馆里的多个厨子，为了能够快速响应客户的点餐吃饭的需求，通常需要多个厨子完成不同的菜品，
+节省上菜的时间，一但一个厨师请了假，也不会有太大影响，因为有其他厨师顶替他的位置继续服务客户。
+这在川菜馆就相当于负载均衡服务器，每个厨师是一个单独的服务
+</code></pre>
+<h3 id="那么在nginx中如何使用那">那么在Nginx中如何使用那？</h3>
+<p>代码如下</p>
+<pre><code>upstream backend{
+    server http://127.0.0.1:8080/;
+    server http://127.0.0.1:8081/;
+    server http://127.0.0.1:8082/;
+}
+
+server{
+    listen 80;
+    server_name localhost;
+    location / {
+        proxy_pass backend;
+    }
+}
+</code></pre>
+<p>将代码写入nginx.conf的http代码块中，nginx -s reload 一下，刷新界面看看效果</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/2/loadbalance.png" alt="测试"></p>
+<p>主要命令包括</p>
+<pre><code>1. proxy_pass 用于指定服务组
+2. upstream 用于定义服务组
+3. listen 监听端口
+4. server_name 指定服务名称
+5. location 定义不同请求的处理
+</code></pre>
+<p>通过以上命令我们就可以快速搭建一个基于Nginx的负载均衡服务器，但是在我们使用中还需要注意到其他的问题
+比如我们后端具有身份验证，那么我们轮询backend组中的服务就会出现问题，因为用户在其中一台中存放了身份信息，所以其他服务认为这是非法的操作。再比如每一台服务器都不一样，有的服务配置较高，有的较低，如果使用相同的访问量，必定对配置较低的服务器产生较大压力从而影响到数据的响应或直接宕机瘫痪，那么我们该如何避免这些问题那？接下来我们就看一下Nginx为我们提供的几个命令。</p>
+<pre><code># weight = value  权重模式,权重越高，被访问到的几率越大
+upstream backend1{
+    server http://127.0.0.1:8080/ weight=1;
+    server http://127.0.0.1:8081/ weight=2;
+    server http://127.0.0.1:8082/ weight=3;
+}
+
+# ip_hash 根据访问的ip 哈希值分配服务，可以解决身份问题
+upstream backend2{
+    ip_hash;
+    server http://127.0.0.1:8081/;
+    server http://127.0.0.1:8082/;
+}
+
+# fair 返回响应时间最短的服务
+upstream backend3{
+    server http://127.0.0.1:8081/;
+    server http://127.0.0.1:8082/;
+    fair;
+}
+
+# url_hash 根据url的哈希值分配服务，hash_method 指定哈希算法
+upstream backend4{
+    server http://127.0.0.1:8081/;
+    server http://127.0.0.1:8082/;
+    hash $request_uri;
+    hash_method crc32;
+}
+
+# 另外 还可以使用 down，backup指定某个服务的特殊规则
+upstream backend5{
+    server http://127.0.0.1:8081/ down;   	#服务不参加负载
+    server http://127.0.0.1:8082/ backup;	#其他服务不可用时启用此服务
+}
+</code></pre>
+<h3 id="最后">最后</h3>
+<p>至此我们已经将Nginx基本的用法掌握了，但对于这种大神级的好东西，还是要更细致的去摸索，有相当多的地方值得我们用心研究体会。</p>
+<p>只有身在其中，才知真正滋味。</p>
+
+    
+    <div class="nav-next-prev">
+        <div class="nav-prev">
+            
+                <a href="http://www.wangxiao4.xyz/blog/reverseproxy/"><i class="fas fa-chevron-left"></i></a>
+            
+        </div>
+        <a class="nav-top" href="#">top</i></a>
+        <div class="nav-next">
+            
+                <a class="grayed-out" href="javascript:void()"><i class="fas fa-chevron-right"></i></a>
+            
+        </div>
+    </div>
+    
+
+            </div><footer>
+<div class="footer-content">
+
+  <div class="contact-info">
+      
+          <div class="footer-mail">
+          <i class="far fa-envelope"></i> <a href="mailto:840076909@QQ.COM">840076909@QQ.COM</a> </div>
+      
+      
+  </div>
+
+
+<p class="copyright meta">版权所有©2019–2021，Xiao4 800K；保留所有权利。</p>
+
+</div>
+</footer></main>
+    </body>
+    <script src=http://www.wangxiao4.xyz/js/navbutton.js></script>
+</html>
