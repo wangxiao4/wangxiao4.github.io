@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="誓要成为年入800K的技术人">
+    <meta name="Author" content="Xiao4 800K">
+    <meta name="keywords" content="小四的博客">
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/syntax.css>
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/style.css>
+    <script src="https://kit.fontawesome.com/1b7478c139.js" crossorigin="anonymous"></script>
+    <title>Xiao4 800K</title>
+  </head><body><aside id="sidenav">
+    <header>
+    
+        <a href=http://www.wangxiao4.xyz/><img src="http://www.wangxiao4.xyz/avatar.png" alt="avatar"></a>
+        
+    
+
+    <a id="branding" href=http://www.wangxiao4.xyz/>
+        
+            Xiao4 800K
+        
+    </a>
+	<span>
+		
+            誓要成为年入800K的技术人
+        
+	</span>
+	<br/>
+    </header>
+
+    <nav>
+        
+            		
+            <a href="/blog/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>博文</span>
+            </a>
+        
+            		
+            <a href="/about"
+                
+            >
+                <i class="fas fa-home fa-sm"></i>
+                <span>关于</span>
+            </a>
+        
+            		
+            <a href="/tags"
+                
+            >
+                <i class="fas fa-tags fa-ms"></i>
+                <span>标签</span>
+            </a>
+        
+            		
+            <a href="https://github.com/wangxiao4"
+                
+                    target="_blank"
+                
+            >
+                <i class="fab fa-github fa-ms"></i>
+                <span>代码</span>
+            </a>
+        
+            		
+            <a href="/index.xml"
+                
+            >
+                <i class="fas fa-rss fa-ms"></i>
+                <span>RSS</span>
+            </a>
+        
+            		
+            <a href="/contact"
+                
+            >
+                <i class="far fa-envelope"></i>
+                <span>留言</span>
+            </a>
+        
+    </nav>
+</aside>
+<main id="main">
+            <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
+            <div class="content">
+    
+    <h1 id="title">Docker玩法 - 项目发布之旅</h1>
+    
+      
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#docker玩法--项目发布之旅">Docker玩法 — 项目发布之旅</a>
+      <ul>
+        <li><a href="#准备">准备</a></li>
+        <li><a href="#第一站dockerfile">第一站，dockerfile</a></li>
+        <li><a href="#第二站编译镜像">第二站，编译镜像</a></li>
+        <li><a href="#第三站启动服务">第三站，启动服务</a></li>
+        <li><a href="#第四站容器和镜像的管理">第四站，容器和镜像的管理</a></li>
+        <li><a href="#终点站-补充总结">终点站 补充总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    <h2 id="docker玩法--项目发布之旅">Docker玩法 — 项目发布之旅</h2>
+<p>通过前文可以对docker有个了解，并运行一些自己喜欢的东西了，那这么有趣的玩具，我们必须加一点自己料近去。
+但是在玩之前，需要知道一个东西，那就是dockerfile文件，这个文件是用来生成docker镜像用的，通过修改其中的命令
+我们就可以把我们自己的料加镜像之中。接下来我们将围绕这个文件开始我们的旅程，那么扬帆启航了。</p>
+<h3 id="准备">准备</h3>
+<p>在旅行之前我们肯定需要准备行囊，那么我这次将准备了一个Go服务 和 一个.net core 服务，两个都是非常简单的webapi服务</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/3/go_server.png" alt="测试"></p>
+<h3 id="第一站dockerfile">第一站，dockerfile</h3>
+<p>在dockerfile中，所有的命令都需要大写，常用命令如下</p>
+<pre><code>1. FROM 宿主环境，也就是代码运行的环境，Go项目就是Gloang，C#项目就是aspnet
+2. MAINTAINER 个人信息，比如名字或邮箱
+3. WORKDIR 是镜像内的工作目录
+4. ADD 追加本地内容到指定镜像目录 第一个参数是本地路径，第二个是镜像目录
+5. COPY 同上但不会自动解压缩包，不能访问网络
+6. RUN 构建镜像时执行命令
+7. EXPOSE 暴露容器端口 可以是一个 也可以是多个
+8. CMD 构建镜像完毕后执行命令
+</code></pre>
+<p>接下来给出 go 服务的dockerfile 文件格式</p>
+<pre><code>FROM golang:latest
+MAINTAINER xiao4_800k &lt;840076909@qq.com&gt;
+WORKDIR /go/src/dockertest
+ADD dockertest/ /go/src/dockertest
+RUN go build -o .
+EXPOSE 80
+CMD [&quot;./dockertest&quot;]
+</code></pre>
+<p>那么我们对照着说一下用到的这些命令</p>
+<pre><code>FROM  指定了宿主环境为golang
+MAINTAINER  写入了作者的个人信息
+WORKDIR 指定工作目录，这里由于go的特性写的这个路径，根据需求有所差异
+ADD  我将本地dockertest目录内容追加到src中
+RUN  go语言执行编译
+EXPOSE 服务暴漏端口 80
+CMD  执行服务
+</code></pre>
+<h3 id="第二站编译镜像">第二站，编译镜像</h3>
+<p>找到dockerfile所在文件夹 执行命令 docker build -t gotest .</p>
+<pre><code>1. docker build 是编译镜像指令
+2. -t 指定名字和标签 格式 -t name:tag 我这里只指定了名称
+3. . 代表当前路径  
+</code></pre>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/3/imagebuild.png" alt="测试"></p>
+<p>执行命令后我们再查看镜像列表 使用命令或面板都可以</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/3/imagebuild_win.png" alt="测试">
+<img src="http://www.wangxiao4.xyz/file/imgs/2021/3/imageconsole.png" alt="测试"></p>
+<p>我们的服务已经成功载入镜像中</p>
+<h3 id="第三站启动服务">第三站，启动服务</h3>
+<p>使用 docker run -p 44444:80 e0fdd56d5475	启动镜像</p>
+<pre><code>1. docker run 是固定的启动命令
+2. -p 用于指定本地端口和镜像的暴漏端口 
+3. 最后加上镜像ID，在浏览器中访问一下
+</code></pre>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/3/runimage.png" alt="测试">
+<img src="http://www.wangxiao4.xyz/file/imgs/2021/3/imageshow.png" alt="测试"></p>
+<p>我们再修改一下 启动命令
+docker run &ndash;name gotest -d -p 44444:80 e0fdd56d5475</p>
+<p>这里增加了 两个参数</p>
+<pre><code>1. --name 用于指定容器的名称
+2. -d 用于指定容器在后台运行
+</code></pre>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/3/runimage2.png" alt="测试">
+<img src="http://www.wangxiao4.xyz/file/imgs/2021/3/docker_ps2.png" alt="测试"></p>
+<p>容器已经启动了
+我们在浏览器中看一下效果</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/3/imageshow.png" alt="测试"></p>
+<h3 id="第四站容器和镜像的管理">第四站，容器和镜像的管理</h3>
+<p>如果你使用的是window版本，那么他有一个管理面板，可以轻松的对容器和镜像进行管理，然后如果是在Linux中可能就需要使用命令来操作了，这个看个人喜好</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/3/imagemanager.png" alt="测试"></p>
+<p>命令参考上一篇</p>
+<h3 id="终点站-补充总结">终点站 补充总结</h3>
+<p>至此我们已经把自己的服务成功搞进docker，但是你有没有发现一个问题，生成的镜像巨大，这无疑是非常不利的，所以后续我们就来玩玩镜像的优化</p>
+<p>最后附上 .net core Dockerfile文件内容，是vs2019自动生成的，参考一下吧</p>
+<pre><code>#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+WORKDIR /src
+COPY [&quot;CoreAPI/CoreAPI.csproj&quot;, &quot;CoreAPI/&quot;]
+RUN dotnet restore &quot;CoreAPI/CoreAPI.csproj&quot;
+COPY . .
+WORKDIR &quot;/src/CoreAPI&quot;
+RUN dotnet build &quot;CoreAPI.csproj&quot; -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish &quot;CoreAPI.csproj&quot; -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT [&quot;dotnet&quot;, &quot;CoreAPI.dll&quot;]
+</code></pre>
+
+    
+    <div class="nav-next-prev">
+        <div class="nav-prev">
+            
+                <a href="http://www.wangxiao4.xyz/blog/dockerplay/"><i class="fas fa-chevron-left"></i></a>
+            
+        </div>
+        <a class="nav-top" href="#">top</i></a>
+        <div class="nav-next">
+            
+                <a class="grayed-out" href="javascript:void()"><i class="fas fa-chevron-right"></i></a>
+            
+        </div>
+    </div>
+    
+
+            </div><footer>
+<div class="footer-content">
+
+  <div class="contact-info">
+      
+          <div class="footer-mail">
+          <i class="far fa-envelope"></i> <a href="mailto:840076909@QQ.COM">840076909@QQ.COM</a> </div>
+      
+      
+  </div>
+
+
+<p class="copyright meta">版权所有©2019–2021，Xiao4 800K；保留所有权利。</p>
+
+</div>
+</footer></main>
+    </body>
+    <script src=http://www.wangxiao4.xyz/js/navbutton.js></script>
+</html>

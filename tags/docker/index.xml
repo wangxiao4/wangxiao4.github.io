@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Thu, 04 Mar 2021 11:48:44 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Mar 2021 15:23:51 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker玩法 - 项目发布之旅</title>
+      <link>http://www.wangxiao4.xyz/blog/docker_push/</link>
+      <pubDate>Thu, 04 Mar 2021 15:23:51 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/docker_push/</guid>
+      <description>Docker玩法 — 项目发布之旅 通过前文可以对docker有个了解，并运行一些自己喜欢的东西了，那这么有趣的玩具，我们必须加一点自己料近去。 但是在玩之前，需要知道一个东西，那就是dockerfile文件，这个文件是用来生成docker镜像用的，通过修改其中的命令 我们就可以把我们自己的料加镜像之中。接下来我们将围绕这个文件开始我们的旅程，那么扬帆启航了。
+准备 在旅行之前我们肯定需要准备行囊，那么我这次将准备了一个Go服务 和 一个.net core 服务，两个都是非常简单的webapi服务
+第一站，dockerfile 在dockerfile中，所有的命令都需要大写，常用命令如下
+1. FROM 宿主环境，也就是代码运行的环境，Go项目就是Gloang，C#项目就是aspnet 2. MAINTAINER 个人信息，比如名字或邮箱 3. WORKDIR 是镜像内的工作目录 4. ADD 追加本地内容到指定镜像目录 第一个参数是本地路径，第二个是镜像目录 5. COPY 同上但不会自动解压缩包，不能访问网络 6. RUN 构建镜像时执行命令 7. EXPOSE 暴露容器端口 可以是一个 也可以是多个 8. CMD 构建镜像完毕后执行命令  接下来给出 go 服务的dockerfile 文件格式
+FROM golang:latest MAINTAINER xiao4_800k &amp;lt;840076909@qq.com&amp;gt; WORKDIR /go/src/dockertest ADD dockertest/ /go/src/dockertest RUN go build -o . EXPOSE 80 CMD [&amp;quot;./dockertest&amp;quot;]  那么我们对照着说一下用到的这些命令
+FROM 指定了宿主环境为golang MAINTAINER 写入了作者的个人信息 WORKDIR 指定工作目录，这里由于go的特性写的这个路径，根据需求有所差异 ADD 我将本地dockertest目录内容追加到src中 RUN go语言执行编译 EXPOSE 服务暴漏端口 80 CMD 执行服务  第二站，编译镜像 找到dockerfile所在文件夹 执行命令 docker build -t gotest .</description>
+    </item>
+    
     <item>
       <title>Docker玩法 - 这么好玩的东西你有必要玩一下</title>
       <link>http://www.wangxiao4.xyz/blog/dockerplay/</link>
