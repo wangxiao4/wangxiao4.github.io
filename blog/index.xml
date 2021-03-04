@@ -7,7 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Thu, 25 Feb 2021 17:06:46 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Mar 2021 11:48:44 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker玩法 - 这么好玩的东西你有必要玩一下</title>
+      <link>http://www.wangxiao4.xyz/blog/dockerplay/</link>
+      <pubDate>Thu, 04 Mar 2021 11:48:44 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/dockerplay/</guid>
+      <description>Docker玩法 — 小试牛刀 玩转第零步，Docker is Who 众所周知，在服务发部后需要部署到服务器上，而最常见服务器系统有 windows 和 Linux 两大阵营，根据服务的需求选择合适的服务器 而在我们发部到服务器之前需要对服务进行测试，为了确保能在生产环境中达到预期效果，我们需要先在测试环境中运行一段时间，观测结果 当服务通过各种测时候，就可以顺利的部署到生产服务器中。
+但是我们在种情况下，不免会有人为的错误产生，为了避免这种情况我们就可以使用docker技术将服务打包运行，这样服务无论在什么环境都可以达到预期的效果 当然docker还具有更多的有点，比如在虚拟机方面，比较直接的方法是使VMware，但缺点很明显，它属于系统级的，需要安装配置，并占用较多的资源， 而是用docker则可以非常方便的初始化一个虚拟环境，且占用资源更少，因为它可以做到更细的单元，比如tomcat环境，管理更加方便 而目前大热的分布式服务和微服务等docker都能发挥很大的作用，你可以在一台机器上建立N个docker，并且每个docker都是独立互补干扰。 总之，docker是开发与维护过程中非常优秀工具
+玩转第一步，请打开百度 如果你看到这里，想必已经对docker有了一点兴趣，那么我们就快速的把它玩起来，打开百度先搜索docker，找到docker的下载地址
+点击这里跳转
+选择自己的安装版本，我使用的是window和Linux两个版本，所以后面博文也是以这两个版本做测试，使用上可能会有些许不同，不过并不重要
+window 一路安装就好，可能会碰到一些问题，比如Hyper-v报错，通常是因因为使用了家庭版window系统导致的，可以按照其他博文对系统进行修改 安装完后启动docker，可能稍稍有点慢，稍稍等待一下，当docker完全启动后会弹出提示，并且图标上那条鲸鱼会出现很多集装箱。
+因为docker默认会安装在C盘，并且后续资源也会存放在C盘，对于C盘容量堪忧的朋友可以在docker设置中进行修改。
+而Linux 安装起来相对来说问题更少
+1. yum -y install docker 命令安装 2. systemctl start docker 启动docker 3. systemctl status docker 查看docker运行状况  这样 docker 我们就已经 安装并运行 了。
+玩转第二步，命令要记住 使用docker，更多的是使用命令，常用的命令多打几遍也就顺手了，万年不变的 hello world 开个头
+1. docker pull hello-world 拉取hello world镜像  2. docker images 查看镜像  3.docker run hello-world 运行镜像  4.</description>
+    </item>
+    
     <item>
       <title>Nginx玩法 — 负载均衡</title>
       <link>http://www.wangxiao4.xyz/blog/nginx_loadbalance/</link>
