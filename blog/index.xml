@@ -7,7 +7,29 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Thu, 04 Mar 2021 15:23:51 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Mar 2021 10:17:19 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker玩法 - 镜像优化之旅</title>
+      <link>http://www.wangxiao4.xyz/blog/dockeroptimization/</link>
+      <pubDate>Fri, 05 Mar 2021 10:17:19 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/dockeroptimization/</guid>
+      <description>Docker玩法 — 镜像优化之旅 开门见山地说，如果你已经来着这里，肯定发现了这个问题，我们在做镜像的时候，仅仅几K的源文件打出来居然百兆以上！更有甚者能到1个G，这无疑在后期运用时产生较大影响，所以我们这次主要目的就是给镜像减肥。
+准备 沿用前一篇Go服务为例，首先看一下我们的源码大小，大概1K左右，打包服务后整体6M左右
+我们用 golang 作为宿主环境构建dockerfile
+FROM golang:latest MAINTAINER xiao4_800k &amp;lt;840076909@qq.com&amp;gt; WORKDIR /go/src/goservice ADD goservice/ /go/src/goservice RUN go build -o . EXPOSE 80 CMD [&amp;quot;./goservice&amp;quot;]  编译goservice镜像，我们看到他的大小为 852MB ，是不是感觉非常的差异，从源码1k到852MB，差距如此之大，咱们的源码到底经历了些什么？
+第一站，探究本源 万事皆有因果，有什么因得什么果，想要弄清楚如何优化，我们必须探究一下是什么原因造成了镜像如此之大。
+接下来我们做一个实验，思路如下：我们向ubuntu镜像中增加文件，再通过命令删除文件，按照我们的理解这时最终的镜像大小应该为ubuntu的大小，因为里面没有任何文件了，对吗？测试一下。
+首先我们查看需要使用的文件大小
+书写dockerfile
+FROM ubuntu ADD goservice/GoService.exe . RUN rm GoService.exe  编译镜像，并查看最终的生成结果
+通过实验我们看到这样的数据，最终的test镜像并不是我们预期的大小，这是为什么那？
+这还要从dockerfile文件说起，前篇我们提过，docker是容器，是运行服务得环境，为了保证容器之间互补干扰，所以每个容器都有相对独立的环境，即使是空环境也是相对独立的，也就是说镜像中必定包含一个能够运行服务的环境；我们再来说一下dockerfile的命令，基本上每一条命令站一行，而行号而则是运行的命令的规则，由上至下的，这也就是docker中层的概念，也就是说为了保证镜像的完整性，docker会将每一层都保存起来，而镜像的大小也就是层大小的总和。
+所以我们刚刚的镜像大小就是 三层之和 第一层ubuntu的大小72.9M 第二层追加exe的大小为6.1M 第三层删除命令忽略不计 所以总和为 72.9 + 6.1 约等于 79M  第二站，优化结构 我们弄清楚原因后，那我们就可以修改我们之前的服务了，为了能让go服务的镜像更小，我们先要找到它能到800M的原因，我们查看一下golang有多大
+这样我们就知道大部分原因就在这里了，宿主太大了，那么我们换一下宿主就可以完美减肥了对吗？而ubuntu可以说还算不错的选择，那么我们重新编写我们的dockerfile文件
+FROM golang:latest WORKDIR /go/src/goservice ADD goservice/ /go/src/goservice RUN go build .</description>
+    </item>
+    
     <item>
       <title>Docker玩法 - 项目发布之旅</title>
       <link>http://www.wangxiao4.xyz/blog/docker_push/</link>

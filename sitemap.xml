@@ -4,31 +4,36 @@
   
   <url>
     <loc>http://www.wangxiao4.xyz/</loc>
-    <lastmod>2021-03-04T15:23:51+08:00</lastmod>
+    <lastmod>2021-03-05T10:17:19+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://www.wangxiao4.xyz/blog/</loc>
-    <lastmod>2021-03-04T15:23:51+08:00</lastmod>
+    <lastmod>2021-03-05T10:17:19+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://www.wangxiao4.xyz/tags/docker/</loc>
-    <lastmod>2021-03-04T15:23:51+08:00</lastmod>
+    <lastmod>2021-03-05T10:17:19+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.wangxiao4.xyz/blog/docker_push/</loc>
-    <lastmod>2021-03-04T15:23:51+08:00</lastmod>
+    <loc>http://www.wangxiao4.xyz/blog/dockeroptimization/</loc>
+    <lastmod>2021-03-05T10:17:19+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://www.wangxiao4.xyz/tags/</loc>
-    <lastmod>2021-03-04T15:23:51+08:00</lastmod>
+    <lastmod>2021-03-05T10:17:19+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://www.wangxiao4.xyz/tags/%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2021-03-05T10:17:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/blog/docker_push/</loc>
     <lastmod>2021-03-04T15:23:51+08:00</lastmod>
   </url>
   
