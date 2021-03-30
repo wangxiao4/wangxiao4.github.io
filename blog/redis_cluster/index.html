@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="誓要成为年入800K的技术人">
+    <meta name="Author" content="Xiao4 800K">
+    <meta name="keywords" content="小四的博客">
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/syntax.css>
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/style.css>
+    <script src="https://kit.fontawesome.com/1b7478c139.js" crossorigin="anonymous"></script>
+    <title>Xiao4 800K</title>
+  </head><body><aside id="sidenav">
+    <header>
+    
+        <a href=http://www.wangxiao4.xyz/><img src="http://www.wangxiao4.xyz/avatar.png" alt="avatar"></a>
+        
+    
+
+    <a id="branding" href=http://www.wangxiao4.xyz/>
+        
+            Xiao4 800K
+        
+    </a>
+	<span>
+		
+            誓要成为年入800K的技术人
+        
+	</span>
+	<br/>
+    </header>
+
+    <nav>
+        
+            		
+            <a href="/blog/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>博文</span>
+            </a>
+        
+            		
+            <a href="/about"
+                
+            >
+                <i class="fas fa-home fa-sm"></i>
+                <span>关于</span>
+            </a>
+        
+            		
+            <a href="/tags"
+                
+            >
+                <i class="fas fa-tags fa-ms"></i>
+                <span>标签</span>
+            </a>
+        
+            		
+            <a href="https://github.com/wangxiao4"
+                
+                    target="_blank"
+                
+            >
+                <i class="fab fa-github fa-ms"></i>
+                <span>代码</span>
+            </a>
+        
+            		
+            <a href="/index.xml"
+                
+            >
+                <i class="fas fa-rss fa-ms"></i>
+                <span>RSS</span>
+            </a>
+        
+            		
+            <a href="/contact"
+                
+            >
+                <i class="far fa-envelope"></i>
+                <span>留言</span>
+            </a>
+        
+    </nav>
+</aside>
+<main id="main">
+            <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
+            <div class="content">
+    
+    <h1 id="title">必须玩一下的Redis集群</h1>
+    
+      
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#redis集群">Redis集群</a></li>
+    <li><a href="#简单的测试一下">简单的测试一下</a></li>
+    <li><a href="#docker中进行测试">docker中进行测试</a></li>
+    <li><a href="#避坑">避坑</a></li>
+  </ul>
+</nav>
+    <p>首先这里默认你对redis有了一定的了解，了解基本的使用方法。
+其次建议多做实验</p>
+<h2 id="redis集群">Redis集群</h2>
+<p>redis有三种模式供我们使用，分别是主从模式、哨兵模式和集群模式。主从模式可以缓解读写压力，也是三种模式中较为简单的一种；哨兵模式可以提高redis高可用性，当结点掉线后可以将他的从库升权为主库，确保redis结点对外服务。</p>
+<p>最后是集群模式，可以说是集成了上述的优点，内置哨兵监听各个主从结点的状态，既可以承担大数据量的独写操作并具有高可用性。但同时也具有一定的要求，至少需要三主三从共六个结点，因为在一个主节点出现问题时，必须要有超过半数的主节点认为它出现了问题，所以至少需要三台主节点，为了让结点有更高的读写性能，所以每个主节点至少有一个从库，所以总共 3主3从 6个结点</p>
+<h2 id="简单的测试一下">简单的测试一下</h2>
+<p>我这里使用的系统是centos7，下载解压最新的redis，当前redis版本是6.2.1 根目录如下</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/3/redis_files.png" alt="目录"></p>
+<p>进入utils/create-cluster目录，打开README文件</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/3/redis_readme.png" alt="readme"></p>
+<p>简单查看一下大概意思
+就是通过 create-cluster 的几个命令搭建一个简单测试的集群环境
+可以根据文档中的顺序测试一下</p>
+<pre><code>1. 下载好redis后解压进入根目录下的utils/create-cluster文件夹
+2. 打开README文件，查看内容，即使英语不好，也可以大概明白意思，大致就是说启动一个简单的集群需要四步
+    a. 编辑create-cluster文件，修改成你想开放的端口号
+    b. 使用./create-cluster start 命令启动redis实例
+    c. 使用./create-cluster create 创建集群映射关系
+    d. 可以使用集群了，并且会有生成日志和AOF数据文件
+3. 按照文档的提示操作一下，在./create-cluster create的时候会有个提示 填写yes即可
+4. 测试效果
+</code></pre>
+<p>这种就是最基本的集群了，最好只用于测试，想要用于生成环境还是需要好好修改一下的。</p>
+<h2 id="docker中进行测试">docker中进行测试</h2>
+<p>首先声明：这种只能用于本机测试，只是为了理解redis集群做补充
+使用docker做redis集群更多的是了解集群的搭建方法</p>
+<pre><code>1. docker pull redis:latest 下载最新的redis镜像
+2. 并查看容器中是否包含redis.conf，目前我使用的6.2版本不包含redis.conf，所以需要我们在启动镜像的时候挂载文件进容器
+3. 启动容器，简单操作看一下是否正常
+4. 运行6个相同的容器，可以使用脚本或手动启动
+5. 查看集群信息
+6. 创建集群，使用 create 命令 
+7. 查看集群信息
+</code></pre>
+<p>我们对刚刚的集群进行简单的测试，并在docker环境外进行测试，这是发现了这个问题，由于docker容器环境和本机并非同一个内网环境，所以在跳转的时候是需要跳转到docker内网络的，所以并非不可用，只是需要增加映射才能用，不过当我们使用真正的服务器搭建时就不会遇到这种问题了，这个问题只存在使用单机docker部署redis集群的时候。</p>
+<h2 id="避坑">避坑</h2>
+<p>docker 中的redis 并没有conf文件需要 需要自己手动挂载进容器
+使用命令
+docker run &ndash;name redis_30003 -p 30003:6379 -v /d/dockerused/redis/conf/redis_6379.conf:/etc/redis/redis_6379.conf -d redis:latest redis-server /etc/redis/redis_6379.conf &ndash;appendonly yes</p>
+<p>使用-v 将需要挂载的文件挂载到容器内</p>
+<p>docker容器中的网络环境与本机并非同一内网，所以在配置docker-redis集群时，需要使用容器内网ip
+命令如下：redis.cli &ndash;cluster create 172.17.0.2:6379 172.17.0.3:6379 172.17.0.4:6379 172.17.0.5:6379 172.17.0.6:6379 172.17.0.7:6379 &ndash;cluster-replicas 1 &ndash;cluster-yes</p>
+
+    
+    <div class="nav-next-prev">
+        <div class="nav-prev">
+            
+                <a href="http://www.wangxiao4.xyz/blog/dockeroptimization/"><i class="fas fa-chevron-left"></i></a>
+            
+        </div>
+        <a class="nav-top" href="#">top</i></a>
+        <div class="nav-next">
+            
+                <a class="grayed-out" href="javascript:void()"><i class="fas fa-chevron-right"></i></a>
+            
+        </div>
+    </div>
+    
+
+            </div><footer>
+<div class="footer-content">
+
+  <div class="contact-info">
+      
+          <div class="footer-mail">
+          <i class="far fa-envelope"></i> <a href="mailto:840076909@QQ.COM">840076909@QQ.COM</a> </div>
+      
+      
+  </div>
+
+
+<p class="copyright meta">版权所有©2019–2021，Xiao4 800K；保留所有权利。</p>
+
+</div>
+</footer>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script></main>
+    </body>
+    <script src=http://www.wangxiao4.xyz/js/navbutton.js></script>
+</html>

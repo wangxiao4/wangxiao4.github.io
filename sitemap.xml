@@ -4,12 +4,27 @@
   
   <url>
     <loc>http://www.wangxiao4.xyz/</loc>
-    <lastmod>2021-03-05T10:17:19+08:00</lastmod>
+    <lastmod>2021-03-30T10:14:49+08:00</lastmod>
   </url>
   
   <url>
     <loc>http://www.wangxiao4.xyz/blog/</loc>
-    <lastmod>2021-03-05T10:17:19+08:00</lastmod>
+    <lastmod>2021-03-30T10:14:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/tags/redis/</loc>
+    <lastmod>2021-03-30T10:14:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/tags/</loc>
+    <lastmod>2021-03-30T10:14:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.wangxiao4.xyz/blog/redis_cluster/</loc>
+    <lastmod>2021-03-30T10:14:49+08:00</lastmod>
   </url>
   
   <url>
@@ -19,11 +34,6 @@
   
   <url>
     <loc>http://www.wangxiao4.xyz/blog/dockeroptimization/</loc>
-    <lastmod>2021-03-05T10:17:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.wangxiao4.xyz/tags/</loc>
     <lastmod>2021-03-05T10:17:19+08:00</lastmod>
   </url>
   
