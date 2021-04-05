@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Tue, 30 Mar 2021 10:14:49 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Apr 2021 09:38:15 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MongoDB聚合查询</title>
+      <link>http://www.wangxiao4.xyz/blog/mongo_aggregate/</link>
+      <pubDate>Mon, 05 Apr 2021 09:38:15 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/mongo_aggregate/</guid>
+      <description>MongoDB聚合查询概述 MongoDB 高效的文档数据库，可以用于存储类似于
+在使用find查询数据时我们可以拼接过滤条件，以返回符合条件的数据，但通常这些数据都不能直接拿来使用或传递， 需要后台再次加工后返回给前端应用。比如我们查询一个用户所有的博文就是类似的操作，通常个人信息和博文信息是分为两张表进行存储的，如果你想知道指定用户的博文时就需要进行表关联查询，如果你了解关系型数据库，那么就能更好的理解这种操作，因为这种表关联查询操作在日常开发中太常见了~
+在Mongo中Aggregate命令是用于聚合查询的方法，在不增加任何参数的情况下等同于find方法，他的格式如下
+collection.aggregate([阶段1,阶段2,……,阶段N])  阶段指令有 用于筛选数据的$match、用于字段相关的$project、用于分组的$group、用于拆分数据的$unwind、用于关联表的$lookup
+筛选数据 db.getCollection(&#39;example_user&#39;).aggregate([ {&amp;quot;$match&amp;quot;:{ &amp;quot;name&amp;quot;:&amp;quot;姜大牛&amp;quot;, &amp;quot;id&amp;quot;:{&amp;quot;$lt&amp;quot;:2} }} ])  $match的参数与find的第一个参数是一样，可以使用字段匹配或者使用范围匹配
+调整字段 db.getCollection(&#39;example_user&#39;).aggregate([ {&amp;quot;$project&amp;quot;:{ &amp;quot;_id&amp;quot;:0,	//隐藏_id &amp;quot;id&amp;quot;:&amp;quot;$id&amp;quot;,	//引用自定义id &amp;quot;名字&amp;quot;:&amp;quot;$address&amp;quot;,	//修改字段名称 &amp;quot;work&amp;quot;:&amp;quot;作家&amp;quot;，	//追加字段 &amp;quot;isLogin&amp;quot;:{&amp;quot;$literal&amp;quot;:1},	//默认值为1或0 &amp;quot;hello&amp;quot;:{&amp;quot;$literal&amp;quot;:&amp;quot;$美元&amp;quot;}	//默认值带有$ }} ])  $project的参数与find的第二个参数类似，只不过具有更多的操作可选，可以追加或修改原有字段，也可以追加子文档的字段。当结果中需要使用‘$’或者1、0作为默认值时，可以使用$literal进行标注，防止与mongo的语法冲突。
+数据分组 分组函数
+db.getCollection(&#39;example_data&#39;).aggregate([ {&amp;quot;$group&amp;quot;:{ &amp;quot;_id&amp;quot;:&amp;quot;$name&amp;quot; }} ])  去重函数
+db.getCollection(&#39;example_data&#39;).distinct(&amp;quot;name&amp;quot;)  首先我们对去重函数和分组函数进行比较可以发现返回值有明显的区别，分组返回数据每行一条，而去重返回的数据在一个数组中。如果我们需要返回更多的字段，如分数信息，平均值等需要统计的数据时，使用分组信息会更适合。我们在对分组信息进行充实一下。
+db.getCollection(&#39;example_data&#39;).aggregate([{ &amp;quot;$group&amp;quot;:{ &amp;quot;_id&amp;quot;:&amp;quot;$name&amp;quot;, &amp;quot;max_score&amp;quot;:{&amp;quot;$max&amp;quot;:&amp;quot;$score&amp;quot;},	//获取最大值 &amp;quot;min_score&amp;quot;:{&amp;quot;$min&amp;quot;:&amp;quot;$score&amp;quot;},	//获取最小值 &amp;quot;avg_score&amp;quot;:{&amp;quot;$avg&amp;quot;:&amp;quot;$score&amp;quot;},	//获取平均值 &amp;quot;sum_score&amp;quot;:{&amp;quot;$sum&amp;quot;:&amp;quot;$score&amp;quot;},	//获取总和 &amp;quot;first_score&amp;quot;:{&amp;quot;$first&amp;quot;:&amp;quot;$score&amp;quot;},	//获取第一个值 &amp;quot;last_score&amp;quot;:{&amp;quot;$last&amp;quot;:&amp;quot;$score&amp;quot;},	//获取最后一个值 } }])  拆分数据 当数据中包含数组时，我们需要将数据拆分后在处理</description>
+    </item>
+    
+    <item>
+      <title>Go的数据库操作</title>
+      <link>http://www.wangxiao4.xyz/blog/go-db/</link>
+      <pubDate>Tue, 30 Mar 2021 14:54:57 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/go-db/</guid>
+      <description>数据库 当前数据库可简单分为传统关系型数据库和非关系型数据库两种，常用的关系型数据库包括MySQL，SQL server等，非关系型有用于缓存的redis，用于文本的</description>
+    </item>
+    
     <item>
       <title>必须玩一下的Redis集群</title>
       <link>http://www.wangxiao4.xyz/blog/redis_cluster/</link>

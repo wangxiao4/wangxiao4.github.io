@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="誓要成为年入800K的技术人">
+    <meta name="Author" content="Xiao4 800K">
+    <meta name="keywords" content="小四的博客">
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/syntax.css>
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/style.css>
+    <script src="https://kit.fontawesome.com/1b7478c139.js" crossorigin="anonymous"></script>
+    <title>Xiao4 800K</title>
+  </head><body><aside id="sidenav">
+    <header>
+    
+        <a href=http://www.wangxiao4.xyz/><img src="http://www.wangxiao4.xyz/avatar.png" alt="avatar"></a>
+        
+    
+
+    <a id="branding" href=http://www.wangxiao4.xyz/>
+        
+            Xiao4 800K
+        
+    </a>
+	<span>
+		
+            誓要成为年入800K的技术人
+        
+	</span>
+	<br/>
+    </header>
+
+    <nav>
+        
+            		
+            <a href="/blog/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>博文</span>
+            </a>
+        
+            		
+            <a href="/about"
+                
+            >
+                <i class="fas fa-home fa-sm"></i>
+                <span>关于</span>
+            </a>
+        
+            		
+            <a href="/tags"
+                
+            >
+                <i class="fas fa-tags fa-ms"></i>
+                <span>标签</span>
+            </a>
+        
+            		
+            <a href="https://github.com/wangxiao4"
+                
+                    target="_blank"
+                
+            >
+                <i class="fab fa-github fa-ms"></i>
+                <span>代码</span>
+            </a>
+        
+            		
+            <a href="/index.xml"
+                
+            >
+                <i class="fas fa-rss fa-ms"></i>
+                <span>RSS</span>
+            </a>
+        
+            		
+            <a href="/contact"
+                
+            >
+                <i class="far fa-envelope"></i>
+                <span>留言</span>
+            </a>
+        
+    </nav>
+</aside>
+<main id="main">
+            <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
+            <div class="content">
+    
+    <h1 id="title">MongoDB聚合查询</h1>
+    
+      
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#mongodb聚合查询概述">MongoDB聚合查询概述</a></li>
+    <li><a href="#筛选数据">筛选数据</a></li>
+    <li><a href="#调整字段">调整字段</a></li>
+    <li><a href="#数据分组">数据分组</a></li>
+    <li><a href="#拆分数据">拆分数据</a></li>
+    <li><a href="#联集合查询">联集合查询</a></li>
+    <li><a href="#另外">另外</a></li>
+  </ul>
+</nav>
+    <h2 id="mongodb聚合查询概述">MongoDB聚合查询概述</h2>
+<p>MongoDB 高效的文档数据库，可以用于存储类似于</p>
+<p>在使用find查询数据时我们可以拼接过滤条件，以返回符合条件的数据，但通常这些数据都不能直接拿来使用或传递，
+需要后台再次加工后返回给前端应用。比如我们查询一个用户所有的博文就是类似的操作，通常个人信息和博文信息是分为两张表进行存储的，如果你想知道指定用户的博文时就需要进行表关联查询，如果你了解关系型数据库，那么就能更好的理解这种操作，因为这种表关联查询操作在日常开发中太常见了~</p>
+<p>在Mongo中Aggregate命令是用于聚合查询的方法，在不增加任何参数的情况下等同于find方法，他的格式如下</p>
+<pre><code>collection.aggregate([阶段1,阶段2,……,阶段N])
+</code></pre>
+<p>阶段指令有 用于筛选数据的$match、用于字段相关的$project、用于分组的$group、用于拆分数据的$unwind、用于关联表的$lookup</p>
+<h2 id="筛选数据">筛选数据</h2>
+<pre><code>db.getCollection('example_user').aggregate([
+    {&quot;$match&quot;:{
+        &quot;name&quot;:&quot;姜大牛&quot;,
+        &quot;id&quot;:{&quot;$lt&quot;:2}
+    }}
+])
+</code></pre>
+<p>$match的参数与find的第一个参数是一样，可以使用字段匹配或者使用范围匹配</p>
+<h2 id="调整字段">调整字段</h2>
+<pre><code>db.getCollection('example_user').aggregate([
+    {&quot;$project&quot;:{
+        &quot;_id&quot;:0,						//隐藏_id
+        &quot;id&quot;:&quot;$id&quot;,						//引用自定义id
+        &quot;名字&quot;:&quot;$address&quot;,				//修改字段名称
+        &quot;work&quot;:&quot;作家&quot;，					//追加字段
+        &quot;isLogin&quot;:{&quot;$literal&quot;:1},		//默认值为1或0
+        &quot;hello&quot;:{&quot;$literal&quot;:&quot;$美元&quot;}	//默认值带有$
+    }}
+])
+</code></pre>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/4/mongo_project.png" alt="目录"></p>
+<p>$project的参数与find的第二个参数类似，只不过具有更多的操作可选，可以追加或修改原有字段，也可以追加子文档的字段。当结果中需要使用‘$’或者1、0作为默认值时，可以使用$literal进行标注，防止与mongo的语法冲突。</p>
+<h2 id="数据分组">数据分组</h2>
+<p>分组函数</p>
+<pre><code>db.getCollection('example_data').aggregate([
+    {&quot;$group&quot;:{
+        &quot;_id&quot;:&quot;$name&quot;
+    }}
+])
+</code></pre>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/4/mongo_group.png" alt="目录"></p>
+<p>去重函数</p>
+<pre><code>db.getCollection('example_data').distinct(&quot;name&quot;)
+</code></pre>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/4/mongo_distinct.png" alt="目录"></p>
+<p>首先我们对去重函数和分组函数进行比较可以发现返回值有明显的区别，分组返回数据每行一条，而去重返回的数据在一个数组中。如果我们需要返回更多的字段，如分数信息，平均值等需要统计的数据时，使用分组信息会更适合。我们在对分组信息进行充实一下。</p>
+<pre><code>db.getCollection('example_data').aggregate([{
+    &quot;$group&quot;:{
+        &quot;_id&quot;:&quot;$name&quot;,
+        &quot;max_score&quot;:{&quot;$max&quot;:&quot;$score&quot;},		//获取最大值
+        &quot;min_score&quot;:{&quot;$min&quot;:&quot;$score&quot;},		//获取最小值
+        &quot;avg_score&quot;:{&quot;$avg&quot;:&quot;$score&quot;},		//获取平均值
+        &quot;sum_score&quot;:{&quot;$sum&quot;:&quot;$score&quot;},		//获取总和
+        &quot;first_score&quot;:{&quot;$first&quot;:&quot;$score&quot;},	//获取第一个值
+        &quot;last_score&quot;:{&quot;$last&quot;:&quot;$score&quot;},	//获取最后一个值
+    }
+}])
+</code></pre>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/4/mongo_group_opr.png" alt="目录"></p>
+<h2 id="拆分数据">拆分数据</h2>
+<p>当数据中包含数组时，我们需要将数据拆分后在处理</p>
+<pre><code>db.getCollection('example_tshirt').aggregate([
+    {&quot;$unwind&quot;:&quot;$size&quot;}
+])
+</code></pre>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/4/mongo_unwind.png" alt="目录"></p>
+<p>我们也可以拆分多个字段</p>
+<pre><code>db.getCollection('example_tshirt').aggregate([
+    {&quot;$unwind&quot;:&quot;$size&quot;},
+    {&quot;$unwind&quot;:&quot;$color&quot;}
+])
+</code></pre>
+<h2 id="联集合查询">联集合查询</h2>
+<p>联集合查询相当于SQL中的联表查询，通过对多个集合的数据进行整合得到我们需要的数据，格式如下</p>
+<pre><code>主集合.aggregate([
+    {&quot;$lookup&quot;:{
+        &quot;from&quot;:&quot;关联集合&quot;,
+        &quot;localField&quot;:&quot;主集合字段&quot;,
+        &quot;foreignField&quot;:&quot;关联集合字段&quot;,
+        &quot;as&quot;:&quot;关联集别名&quot;
+    }}
+])
+</code></pre>
+<p>比如我们需要查询用户都写了哪些博文就可以按照如下的格式写</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/4/mongo_lookup.png" alt="目录"></p>
+<p>当然这种数据格式对于我们来说还不够，我们可以对数据进行优化</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/4/mongo_lookup_2.png" alt="目录"></p>
+<h2 id="另外">另外</h2>
+<p>搞完mongo肯定是需要拿来用的，在python中有个pymongo库，几乎可以将mongo指令直接拿来用，这样减少了我们的学习成本，相当给力</p>
+<p><img src="http://www.wangxiao4.xyz/file/imgs/2021/4/mongo_in_python.png" alt="目录"></p>
+
+    
+    <div class="nav-next-prev">
+        <div class="nav-prev">
+            
+                <a href="http://www.wangxiao4.xyz/blog/go-db/"><i class="fas fa-chevron-left"></i></a>
+            
+        </div>
+        <a class="nav-top" href="#">top</i></a>
+        <div class="nav-next">
+            
+                <a class="grayed-out" href="javascript:void()"><i class="fas fa-chevron-right"></i></a>
+            
+        </div>
+    </div>
+    
+
+            </div><footer>
+<div class="footer-content">
+
+  <div class="contact-info">
+      
+          <div class="footer-mail">
+          <i class="far fa-envelope"></i> <a href="mailto:840076909@QQ.COM">840076909@QQ.COM</a> </div>
+      
+      
+  </div>
+
+
+<p class="copyright meta">版权所有©2019–2021，Xiao4 800K；保留所有权利。</p>
+
+</div>
+</footer>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script></main>
+    </body>
+    <script src=http://www.wangxiao4.xyz/js/navbutton.js></script>
+</html>
