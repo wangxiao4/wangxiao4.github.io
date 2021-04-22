@@ -7,7 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Mon, 05 Apr 2021 09:38:15 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Apr 2021 16:51:13 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jenkins持续集成</title>
+      <link>http://www.wangxiao4.xyz/blog/jenkins/</link>
+      <pubDate>Thu, 22 Apr 2021 16:51:13 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/jenkins/</guid>
+      <description>简介 来点干的。 Jenkins 是一款开用于项目持续集成的工具，具有自动化测试、打包、存档、部署等优点，节省时间。这些优点在复杂项目尤为明显。
+大致流程如下
+1. 代码提交到git服务器，这里Jenkins支持很多种，比如常用的有Github、Gitlab、Bonobo等 2. 接收构建指令，指令可以是来自Jenkins本身的操作，也支持来自外部指令，如Git合并指令，不过这种情况需要在Jenkins和Git服务器进行额外的配置 3. Jenkins构建项目，可以通过Maven指令也可通过Shell脚本 4. Jenkins部署项目  关键词：CI 持续集成 CD 持续部署
+部署 Jenkins本身部署非常简单，这里以部署war包为例
+1. 准备环境，我使用了Centos7，安装JDK(1.8以上)，Git，Maven，Bonobo，tomcat(8以上) 2. 下载Jenkins的war包，并放到tomcat的webapps中 [下载地址](http://mirrors.jenkins-ci.org/war/latest/) 3. 启动tomcat，并访问Jenkins 4. 输入初始化密码  5. 创建管理员账户 6. 选择插件，可以直接默认安装推荐的插件，等待安装完成 7. 找到菜单中的 系统设置 -》插件管理，安装“Deploy to container Plugin”、“Maven Invoker plugin”两个插件，方便我们后面使用 8. 找到菜单中的 系统设置 -》全局工具配置 ，配置JDK，Git，Maven  至此安装过程就完成了
+测试 整理下思路，本地创建一个maven web项目,提交到Git服务器，通过Jenkins编译项目，最后部署到指定的tomcat。
+1. 创建web项目 2. 再git服务器新建地址 3. 提交web项目到git 4. 在Jenkins中配置一个新任务  5. 配置Git相关内容，增加用户  6. 配置构建指令  7. 配置构建后指令  8.</description>
+    </item>
+    
     <item>
       <title>MongoDB聚合查询</title>
       <link>http://www.wangxiao4.xyz/blog/mongo_aggregate/</link>
