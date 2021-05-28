@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="誓要成为年入800K的技术人">
+    <meta name="Author" content="Xiao4 800K">
+    <meta name="keywords" content="小四的博客">
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/syntax.css>
+    <link rel="stylesheet" href=http://www.wangxiao4.xyz/css/style.css>
+    <script src="https://kit.fontawesome.com/1b7478c139.js" crossorigin="anonymous"></script>
+    <title>Xiao4 800K</title>
+  </head><body><aside id="sidenav">
+    <header>
+    
+        <a href=http://www.wangxiao4.xyz/><img src="http://www.wangxiao4.xyz/avatar.png" alt="avatar"></a>
+        
+    
+
+    <a id="branding" href=http://www.wangxiao4.xyz/>
+        
+            Xiao4 800K
+        
+    </a>
+	<span>
+		
+            誓要成为年入800K的技术人
+        
+	</span>
+	<br/>
+    </header>
+
+    <nav>
+        
+            		
+            <a href="/blog/"
+                
+            >
+                <i class="fas fa-keyboard fa-ms"></i>
+                <span>博文</span>
+            </a>
+        
+            		
+            <a href="/about"
+                
+            >
+                <i class="fas fa-home fa-sm"></i>
+                <span>关于</span>
+            </a>
+        
+            		
+            <a href="/tags"
+                
+            >
+                <i class="fas fa-tags fa-ms"></i>
+                <span>标签</span>
+            </a>
+        
+            		
+            <a href="https://github.com/wangxiao4"
+                
+                    target="_blank"
+                
+            >
+                <i class="fab fa-github fa-ms"></i>
+                <span>代码</span>
+            </a>
+        
+            		
+            <a href="/index.xml"
+                
+            >
+                <i class="fas fa-rss fa-ms"></i>
+                <span>RSS</span>
+            </a>
+        
+            		
+            <a href="/contact"
+                
+            >
+                <i class="far fa-envelope"></i>
+                <span>留言</span>
+            </a>
+        
+    </nav>
+</aside>
+<main id="main">
+            <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
+            <div class="content">
+    
+    <h1 id="title">汉明距离总和</h1>
+    
+      
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#题目">题目</a></li>
+        <li><a href="#思路">思路</a></li>
+        <li><a href="#搞起">搞起</a></li>
+        <li><a href="#优化">优化</a></li>
+        <li><a href="#答案">答案</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    <h3 id="简介">简介</h3>
+<p>力扣日常打卡时碰到了这样一个题，原本一个中级题目没什么好分享的，只是记录一下做题时的心理过程。</p>
+<p>在力扣中，我属于慢刷派，每天都会去刷一下，通常得到第一个版本后，会再优化一下，在我感觉已经到我的极限时，再去看一下，性能最好的答案。</p>
+<p>先说结论：如果你没有不断的尝试，你怎么知道早点放弃才是最快的解决方法，哈哈哈哈哈哈咯~</p>
+<h3 id="题目">题目</h3>
+<p>两个整数的 汉明距离 指的是这两个数字的二进制数对应位不同的数量。</p>
+<p>计算一个数组中，任意两个数之间汉明距离的总和。</p>
+<pre><code>示例:
+
+输入: 4, 14, 2
+
+输出: 6
+
+解释: 在二进制表示中，4表示为0100，14表示为1110，2表示为0010。（这样表示是为了体现后四位之间关系）
+所以答案为：
+HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.
+注意:
+
+数组中元素的范围为从 0到 10^9。
+数组的长度不超过 10^4。
+</code></pre>
+<p>来源：力扣（LeetCode）</p>
+<h3 id="思路">思路</h3>
+<ol>
+<li>首先你要先看题，大概捋一下逻辑</li>
+<li>第一层 循环获取 参数数组nums中的每个元素index</li>
+<li>内层轮询index后面的元素，得到需要比对元素</li>
+<li>最里层比对两个元素的汉明距离并追加总和</li>
+<li>最后在最外层返回总和</li>
+</ol>
+<p>如此简单</p>
+<h3 id="搞起">搞起</h3>
+<pre><code>class Solution {
+    public int totalHammingDistance(int[] nums) {
+        int count=0;
+        for(int i=0;i&lt;nums.length;i++){
+            for(int j=i+1;j&lt;nums.length;j++){
+                count+=twoNumsHanming(nums[i],nums[j]);
+            }
+        }
+        return count;
+    }
+
+    public int twoNumsHanming(int num1,int num2){
+        int count=0;
+        for(int i=31;i&gt;=0;i--){
+            if((num1 &gt;&gt;&gt; i &amp; 1) != (num2 &gt;&gt;&gt; i &amp; 1)){
+                count++;
+            }
+        }
+        return count;
+    }
+}
+</code></pre>
+<p>感觉性能不是很高,但毕竟只是开始。经过了测试用例，迫不及待想看看能跑第几名，直接提交答案。</p>
+<p>最终：35 / 46 个通过测试用例
+状态：超出时间限制</p>
+<p>简单说就是由于耗时太多不接受此答案。</p>
+<h3 id="优化">优化</h3>
+<p>很明显，由于循环过多，导致时间超标了。在没有其他思路之前，只能在此基础上进行改进</p>
+<p>首先就是要改进循环。但是无从下手，只能将hanming方法作为第一层循环，表面上看至少第一层只有32次循环。</p>
+<p>但是答案依然超出时间限制。仔细想一下这种修改似乎并没有提升性能，因为循环总数是一样的。</p>
+<p>终于在做了半个小时思想斗争后选择看答案，心里想毕竟程序没有错误只是时间超时了，看看答案能给出什么新花样。</p>
+<h3 id="答案">答案</h3>
+<p>逐位统计
+在计算汉明距离时，我们考虑的是同一比特位上的值是否不同，而不同比特位之间是互不影响的。</p>
+<p>对于数组 \textit{nums}nums 中的某个元素 \textit{val}val，若其二进制的第 ii 位为 11，我们只需统计 \textit{nums}nums 中有多少元素的第 ii 位为 00，即计算出了 \textit{val}val 与其他元素在第 ii 位上的汉明距离之和。</p>
+<p>具体地，若长度为 nn 的数组 \textit{nums}nums 的所有元素二进制的第 ii 位共有 cc 个 11，n-cn−c 个 00，则些元素在二进制的第 ii 位上的汉明距离之和为</p>
+<p>c\cdot(n-c)
+c⋅(n−c)</p>
+<p>我们可以从二进制的最低位到最高位，逐位统计汉明距离。将每一位上得到的汉明距离累加即为答案。</p>
+<p>具体实现时，对于整数 \textit{val}val 二进制的第 ii 位，我们可以用代码 (val &raquo; i) &amp; 1 来取出其第 ii 位的值。此外，由于 10^9&lt;2^{30} ，我们可以直接从二进制的第 00 位枚举到第 2929 位。</p>
+<p>修改代码</p>
+<pre><code>class Solution {
+    public int totalHammingDistance(int[] nums) {
+        int count=0;
+        for(int i=30;i&gt;=0;i--){
+            int num1count=0;
+            for(int x=0;x&lt;nums.length;x++){
+                if((nums[x] &gt;&gt;&gt; i &amp; 1)==1){
+                    num1count++;
+                }
+            }
+            count+=num1count*(nums.length-num1count);
+        }
+        return count;
+    }
+}
+</code></pre>
+<p>看了这个答案后，心里相当不甘，但是没办法，是真的忘了或者不知道那个C*(N-C)的部分了</p>
+
+    
+    <div class="nav-next-prev">
+        <div class="nav-prev">
+            
+                <a href="http://www.wangxiao4.xyz/blog/jenkins/"><i class="fas fa-chevron-left"></i></a>
+            
+        </div>
+        <a class="nav-top" href="#">top</i></a>
+        <div class="nav-next">
+            
+                <a class="grayed-out" href="javascript:void()"><i class="fas fa-chevron-right"></i></a>
+            
+        </div>
+    </div>
+    
+
+            </div><footer>
+<div class="footer-content">
+
+  <div class="contact-info">
+      
+          <div class="footer-mail">
+          <i class="far fa-envelope"></i> <a href="mailto:840076909@QQ.COM">840076909@QQ.COM</a> </div>
+      
+      
+  </div>
+
+
+<p class="copyright meta">版权所有©2019–2021，Xiao4 800K；保留所有权利。</p>
+
+</div>
+</footer>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script></main>
+    </body>
+    <script src=http://www.wangxiao4.xyz/js/navbutton.js></script>
+</html>
