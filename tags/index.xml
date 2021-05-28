@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Thu, 22 Apr 2021 16:51:13 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 28 May 2021 11:28:53 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>leetcode</title>
+      <link>http://www.wangxiao4.xyz/tags/leetcode/</link>
+      <pubDate>Fri, 28 May 2021 11:28:53 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/tags/leetcode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>汉明</title>
+      <link>http://www.wangxiao4.xyz/tags/%E6%B1%89%E6%98%8E/</link>
+      <pubDate>Fri, 28 May 2021 11:28:53 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/tags/%E6%B1%89%E6%98%8E/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>算法</title>
+      <link>http://www.wangxiao4.xyz/tags/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Fri, 28 May 2021 11:28:53 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/tags/%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>git</title>
       <link>http://www.wangxiao4.xyz/tags/git/</link>

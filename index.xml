@@ -7,7 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Thu, 22 Apr 2021 16:51:13 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 28 May 2021 11:28:53 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>汉明距离总和</title>
+      <link>http://www.wangxiao4.xyz/blog/leetcode_hanming/</link>
+      <pubDate>Fri, 28 May 2021 11:28:53 +0800</pubDate>
+      
+      <guid>http://www.wangxiao4.xyz/blog/leetcode_hanming/</guid>
+      <description>简介 力扣日常打卡时碰到了这样一个题，原本一个中级题目没什么好分享的，只是记录一下做题时的心理过程。
+在力扣中，我属于慢刷派，每天都会去刷一下，通常得到第一个版本后，会再优化一下，在我感觉已经到我的极限时，再去看一下，性能最好的答案。
+先说结论：如果你没有不断的尝试，你怎么知道早点放弃才是最快的解决方法，哈哈哈哈哈哈咯~
+题目 两个整数的 汉明距离 指的是这两个数字的二进制数对应位不同的数量。
+计算一个数组中，任意两个数之间汉明距离的总和。
+示例: 输入: 4, 14, 2 输出: 6 解释: 在二进制表示中，4表示为0100，14表示为1110，2表示为0010。（这样表示是为了体现后四位之间关系） 所以答案为： HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6. 注意: 数组中元素的范围为从 0到 10^9。 数组的长度不超过 10^4。  来源：力扣（LeetCode）
+思路  首先你要先看题，大概捋一下逻辑 第一层 循环获取 参数数组nums中的每个元素index 内层轮询index后面的元素，得到需要比对元素 最里层比对两个元素的汉明距离并追加总和 最后在最外层返回总和  如此简单
+搞起 class Solution { public int totalHammingDistance(int[] nums) { int count=0; for(int i=0;i&amp;lt;nums.length;i++){ for(int j=i+1;j&amp;lt;nums.length;j++){ count+=twoNumsHanming(nums[i],nums[j]); } } return count; } public int twoNumsHanming(int num1,int num2){ int count=0; for(int i=31;i&amp;gt;=0;i--){ if((num1 &amp;gt;&amp;gt;&amp;gt; i &amp;amp; 1) !</description>
+    </item>
+    
     <item>
       <title>Jenkins持续集成</title>
       <link>http://www.wangxiao4.xyz/blog/jenkins/</link>
