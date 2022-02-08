@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tomcat on Xiao4 800K</title>
-    <link>http://www.wangxiao4.xyz/tags/tomcat/</link>
+    <link>http://www.xiao4.wang/tags/tomcat/</link>
     <description>Recent content in tomcat on Xiao4 800K</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Thu, 22 Apr 2021 16:51:13 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/tomcat/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Apr 2021 16:51:13 +0800</lastBuildDate><atom:link href="http://www.xiao4.wang/tags/tomcat/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Jenkins持续集成</title>
-      <link>http://www.wangxiao4.xyz/blog/jenkins/</link>
+      <link>http://www.xiao4.wang/blog/jenkins/</link>
       <pubDate>Thu, 22 Apr 2021 16:51:13 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/jenkins/</guid>
+      <guid>http://www.xiao4.wang/blog/jenkins/</guid>
       <description>简介 来点干的。 Jenkins 是一款开用于项目持续集成的工具，具有自动化测试、打包、存档、部署等优点，节省时间。这些优点在复杂项目尤为明显。
 大致流程如下
 1. 代码提交到git服务器，这里Jenkins支持很多种，比如常用的有Github、Gitlab、Bonobo等 2. 接收构建指令，指令可以是来自Jenkins本身的操作，也支持来自外部指令，如Git合并指令，不过这种情况需要在Jenkins和Git服务器进行额外的配置 3. Jenkins构建项目，可以通过Maven指令也可通过Shell脚本 4. Jenkins部署项目  关键词：CI 持续集成 CD 持续部署

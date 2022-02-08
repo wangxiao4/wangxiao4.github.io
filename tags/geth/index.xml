@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GEth on Xiao4 800K</title>
+    <link>http://www.xiao4.wang/tags/geth/</link>
+    <description>Recent content in GEth on Xiao4 800K</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
+    <lastBuildDate>Tue, 16 Nov 2021 18:18:42 +0800</lastBuildDate><atom:link href="http://www.xiao4.wang/tags/geth/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GEth 创建私链流程</title>
+      <link>http://www.xiao4.wang/blog/eth01/</link>
+      <pubDate>Tue, 16 Nov 2021 18:18:42 +0800</pubDate>
+      
+      <guid>http://www.xiao4.wang/blog/eth01/</guid>
+      <description>GEth 创建私链流程 geth是go语言开发的以太坊客户端，可以作为数据节点进行使用，同时还可以作为测试网络进行使用。
+参考文档如下 小破站教程：
+创世配置 老版本
+{ &amp;quot;config&amp;quot;:{ &amp;quot;chainId&amp;quot;:44 }, &amp;quot;difficulty&amp;quot;:&amp;quot;2000&amp;quot;, &amp;quot;gasLimit&amp;quot;:&amp;quot;2100000&amp;quot;, &amp;quot;alloc&amp;quot;:{ &amp;quot;0x840db68C7C132a75Fe0CFe9A0A664f583dD90f15&amp;quot;:{ &amp;quot;balance&amp;quot;:&amp;quot;300000&amp;quot; } } } chainId：网络id difficulty：起始难度 gasLimit：交易执行时，gas上限 alloc：初始账户 balance：初始余额  新版本
+{&amp;quot;config&amp;quot;:{&amp;quot;chainId&amp;quot;:44,&amp;quot;homesteadBlock&amp;quot;:0,&amp;quot;eip150Block&amp;quot;:0,&amp;quot;eip155Block&amp;quot;:0,&amp;quot;eip158Block&amp;quot;:0,&amp;quot;byzantiumBlock&amp;quot;:0,&amp;quot;constantinopleBlock&amp;quot;:0,&amp;quot;petersburgBlock&amp;quot;:0,&amp;quot;istanbulBlock&amp;quot;:0},&amp;quot;alloc&amp;quot;:{&amp;quot;0x840db68C7C132a75Fe0CFe9A0A664f583dD90f15&amp;quot;:{&amp;quot;balance&amp;quot;:&amp;quot;300000000000000000000&amp;quot;}},&amp;quot;coinbase&amp;quot;:&amp;quot;0x0000000000000000000000000000000000000000&amp;quot;,&amp;quot;difficulty&amp;quot;:&amp;quot;0x2000&amp;quot;,&amp;quot;extraData&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;gasLimit&amp;quot;:&amp;quot;0x2fefd8&amp;quot;,&amp;quot;nonce&amp;quot;:&amp;quot;0x0000000000000042&amp;quot;,&amp;quot;mixhash&amp;quot;:&amp;quot;0x0000000000000000000000000000000000000000000000000000000000000000&amp;quot;,&amp;quot;parentHash&amp;quot;:&amp;quot;0x0000000000000000000000000000000000000000000000000000000000000000&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;0x00&amp;quot;}  这些配置会随着版本升级发生一些变化，我在本地配置时，使用了最新版本的配置，配合教程使用没有发现异常。
+初始化私链 初始化私链只需要一行命令就好,
+geth --datadir &amp;quot;数据存放位置&amp;quot; init 初始化配置.json  启动私链 后台启动 启用自带的测试链 测试链替代品 </description>
+    </item>
+    
+  </channel>
+</rss>

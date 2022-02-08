@@ -2,18 +2,33 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Xiao4 800K</title>
-    <link>http://www.wangxiao4.xyz/</link>
+    <link>http://www.xiao4.wang/</link>
     <description>Recent content on Xiao4 800K</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Fri, 28 May 2021 11:28:53 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Nov 2021 18:18:42 +0800</lastBuildDate><atom:link href="http://www.xiao4.wang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GEth 创建私链流程</title>
+      <link>http://www.xiao4.wang/blog/eth01/</link>
+      <pubDate>Tue, 16 Nov 2021 18:18:42 +0800</pubDate>
+      
+      <guid>http://www.xiao4.wang/blog/eth01/</guid>
+      <description>GEth 创建私链流程 geth是go语言开发的以太坊客户端，可以作为数据节点进行使用，同时还可以作为测试网络进行使用。
+参考文档如下 小破站教程：
+创世配置 老版本
+{ &amp;quot;config&amp;quot;:{ &amp;quot;chainId&amp;quot;:44 }, &amp;quot;difficulty&amp;quot;:&amp;quot;2000&amp;quot;, &amp;quot;gasLimit&amp;quot;:&amp;quot;2100000&amp;quot;, &amp;quot;alloc&amp;quot;:{ &amp;quot;0x840db68C7C132a75Fe0CFe9A0A664f583dD90f15&amp;quot;:{ &amp;quot;balance&amp;quot;:&amp;quot;300000&amp;quot; } } } chainId：网络id difficulty：起始难度 gasLimit：交易执行时，gas上限 alloc：初始账户 balance：初始余额  新版本
+{&amp;quot;config&amp;quot;:{&amp;quot;chainId&amp;quot;:44,&amp;quot;homesteadBlock&amp;quot;:0,&amp;quot;eip150Block&amp;quot;:0,&amp;quot;eip155Block&amp;quot;:0,&amp;quot;eip158Block&amp;quot;:0,&amp;quot;byzantiumBlock&amp;quot;:0,&amp;quot;constantinopleBlock&amp;quot;:0,&amp;quot;petersburgBlock&amp;quot;:0,&amp;quot;istanbulBlock&amp;quot;:0},&amp;quot;alloc&amp;quot;:{&amp;quot;0x840db68C7C132a75Fe0CFe9A0A664f583dD90f15&amp;quot;:{&amp;quot;balance&amp;quot;:&amp;quot;300000000000000000000&amp;quot;}},&amp;quot;coinbase&amp;quot;:&amp;quot;0x0000000000000000000000000000000000000000&amp;quot;,&amp;quot;difficulty&amp;quot;:&amp;quot;0x2000&amp;quot;,&amp;quot;extraData&amp;quot;:&amp;quot;&amp;quot;,&amp;quot;gasLimit&amp;quot;:&amp;quot;0x2fefd8&amp;quot;,&amp;quot;nonce&amp;quot;:&amp;quot;0x0000000000000042&amp;quot;,&amp;quot;mixhash&amp;quot;:&amp;quot;0x0000000000000000000000000000000000000000000000000000000000000000&amp;quot;,&amp;quot;parentHash&amp;quot;:&amp;quot;0x0000000000000000000000000000000000000000000000000000000000000000&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;0x00&amp;quot;}  这些配置会随着版本升级发生一些变化，我在本地配置时，使用了最新版本的配置，配合教程使用没有发现异常。
+初始化私链 初始化私链只需要一行命令就好,
+geth --datadir &amp;quot;数据存放位置&amp;quot; init 初始化配置.json  启动私链 后台启动 启用自带的测试链 测试链替代品 </description>
+    </item>
+    
     <item>
       <title>汉明距离总和</title>
-      <link>http://www.wangxiao4.xyz/blog/leetcode_hanming/</link>
+      <link>http://www.xiao4.wang/blog/leetcode_hanming/</link>
       <pubDate>Fri, 28 May 2021 11:28:53 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/leetcode_hanming/</guid>
+      <guid>http://www.xiao4.wang/blog/leetcode_hanming/</guid>
       <description>简介 力扣日常打卡时碰到了这样一个题，原本一个中级题目没什么好分享的，只是记录一下做题时的心理过程。
 在力扣中，我属于慢刷派，每天都会去刷一下，通常得到第一个版本后，会再优化一下，在我感觉已经到我的极限时，再去看一下，性能最好的答案。
 先说结论：如果你没有不断的尝试，你怎么知道早点放弃才是最快的解决方法，哈哈哈哈哈哈咯~
@@ -26,10 +41,10 @@
     
     <item>
       <title>Jenkins持续集成</title>
-      <link>http://www.wangxiao4.xyz/blog/jenkins/</link>
+      <link>http://www.xiao4.wang/blog/jenkins/</link>
       <pubDate>Thu, 22 Apr 2021 16:51:13 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/jenkins/</guid>
+      <guid>http://www.xiao4.wang/blog/jenkins/</guid>
       <description>简介 来点干的。 Jenkins 是一款开用于项目持续集成的工具，具有自动化测试、打包、存档、部署等优点，节省时间。这些优点在复杂项目尤为明显。
 大致流程如下
 1. 代码提交到git服务器，这里Jenkins支持很多种，比如常用的有Github、Gitlab、Bonobo等 2. 接收构建指令，指令可以是来自Jenkins本身的操作，也支持来自外部指令，如Git合并指令，不过这种情况需要在Jenkins和Git服务器进行额外的配置 3. Jenkins构建项目，可以通过Maven指令也可通过Shell脚本 4. Jenkins部署项目  关键词：CI 持续集成 CD 持续部署
@@ -41,10 +56,10 @@
     
     <item>
       <title>MongoDB聚合查询</title>
-      <link>http://www.wangxiao4.xyz/blog/mongo_aggregate/</link>
+      <link>http://www.xiao4.wang/blog/mongo_aggregate/</link>
       <pubDate>Mon, 05 Apr 2021 09:38:15 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/mongo_aggregate/</guid>
+      <guid>http://www.xiao4.wang/blog/mongo_aggregate/</guid>
       <description>MongoDB聚合查询概述 MongoDB 高效的文档数据库，可以用于存储类似于
 在使用find查询数据时我们可以拼接过滤条件，以返回符合条件的数据，但通常这些数据都不能直接拿来使用或传递， 需要后台再次加工后返回给前端应用。比如我们查询一个用户所有的博文就是类似的操作，通常个人信息和博文信息是分为两张表进行存储的，如果你想知道指定用户的博文时就需要进行表关联查询，如果你了解关系型数据库，那么就能更好的理解这种操作，因为这种表关联查询操作在日常开发中太常见了~
 在Mongo中Aggregate命令是用于聚合查询的方法，在不增加任何参数的情况下等同于find方法，他的格式如下
@@ -59,19 +74,19 @@ db.getCollection(&#39;example_data&#39;).aggregate([{ &amp;quot;$group&amp;quot;
     
     <item>
       <title>Go的数据库操作</title>
-      <link>http://www.wangxiao4.xyz/blog/go-db/</link>
+      <link>http://www.xiao4.wang/blog/go-db/</link>
       <pubDate>Tue, 30 Mar 2021 14:54:57 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/go-db/</guid>
+      <guid>http://www.xiao4.wang/blog/go-db/</guid>
       <description>数据库 当前数据库可简单分为传统关系型数据库和非关系型数据库两种，常用的关系型数据库包括MySQL，SQL server等，非关系型有用于缓存的redis，用于文本的</description>
     </item>
     
     <item>
       <title>必须玩一下的Redis集群</title>
-      <link>http://www.wangxiao4.xyz/blog/redis_cluster/</link>
+      <link>http://www.xiao4.wang/blog/redis_cluster/</link>
       <pubDate>Tue, 30 Mar 2021 10:14:49 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/redis_cluster/</guid>
+      <guid>http://www.xiao4.wang/blog/redis_cluster/</guid>
       <description>首先这里默认你对redis有了一定的了解，了解基本的使用方法。 其次建议多做实验
 Redis集群 redis有三种模式供我们使用，分别是主从模式、哨兵模式和集群模式。主从模式可以缓解读写压力，也是三种模式中较为简单的一种；哨兵模式可以提高redis高可用性，当结点掉线后可以将他的从库升权为主库，确保redis结点对外服务。
 最后是集群模式，可以说是集成了上述的优点，内置哨兵监听各个主从结点的状态，既可以承担大数据量的独写操作并具有高可用性。但同时也具有一定的要求，至少需要三主三从共六个结点，因为在一个主节点出现问题时，必须要有超过半数的主节点认为它出现了问题，所以至少需要三台主节点，为了让结点有更高的读写性能，所以每个主节点至少有一个从库，所以总共 3主3从 6个结点
@@ -86,10 +101,10 @@ docker中进行测试 首先声明：这种只能用于本机测试，只是为�
     
     <item>
       <title>Docker玩法 - 镜像优化之旅</title>
-      <link>http://www.wangxiao4.xyz/blog/dockeroptimization/</link>
+      <link>http://www.xiao4.wang/blog/dockeroptimization/</link>
       <pubDate>Fri, 05 Mar 2021 10:17:19 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/dockeroptimization/</guid>
+      <guid>http://www.xiao4.wang/blog/dockeroptimization/</guid>
       <description>Docker玩法 — 镜像优化之旅 开门见山地说，如果你已经来着这里，肯定发现了这个问题，我们在做镜像的时候，仅仅几K的源文件打出来居然百兆以上！更有甚者能到1个G，这无疑在后期运用时产生较大影响，所以我们这次主要目的就是给镜像减肥。
 准备 沿用前一篇Go服务为例，首先看一下我们的源码大小，大概1K左右，打包服务后整体6M左右
 我们用 golang 作为宿主环境构建dockerfile
@@ -108,10 +123,10 @@ FROM golang:latest WORKDIR /go/src/goservice ADD goservice/ /go/src/goservice RU
     
     <item>
       <title>Docker玩法 - 项目发布之旅</title>
-      <link>http://www.wangxiao4.xyz/blog/docker_push/</link>
+      <link>http://www.xiao4.wang/blog/docker_push/</link>
       <pubDate>Thu, 04 Mar 2021 15:23:51 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/docker_push/</guid>
+      <guid>http://www.xiao4.wang/blog/docker_push/</guid>
       <description>Docker玩法 — 项目发布之旅 通过前文可以对docker有个了解，并运行一些自己喜欢的东西了，那这么有趣的玩具，我们必须加一点自己料近去。 但是在玩之前，需要知道一个东西，那就是dockerfile文件，这个文件是用来生成docker镜像用的，通过修改其中的命令 我们就可以把我们自己的料加镜像之中。接下来我们将围绕这个文件开始我们的旅程，那么扬帆启航了。
 准备 在旅行之前我们肯定需要准备行囊，那么我这次将准备了一个Go服务 和 一个.net core 服务，两个都是非常简单的webapi服务
 第一站，dockerfile 在dockerfile中，所有的命令都需要大写，常用命令如下
@@ -122,10 +137,10 @@ FROM 指定了宿主环境为golang MAINTAINER 写入了作者的个人信息 WO
     
     <item>
       <title>Docker玩法 - 这么好玩的东西你有必要玩一下</title>
-      <link>http://www.wangxiao4.xyz/blog/dockerplay/</link>
+      <link>http://www.xiao4.wang/blog/dockerplay/</link>
       <pubDate>Thu, 04 Mar 2021 11:48:44 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/dockerplay/</guid>
+      <guid>http://www.xiao4.wang/blog/dockerplay/</guid>
       <description>Docker玩法 — 小试牛刀 玩转第零步，Docker is Who 众所周知，在服务发部后需要部署到服务器上，而最常见服务器系统有 windows 和 Linux 两大阵营，根据服务的需求选择合适的服务器 而在我们发部到服务器之前需要对服务进行测试，为了确保能在生产环境中达到预期效果，我们需要先在测试环境中运行一段时间，观测结果 当服务通过各种测时候，就可以顺利的部署到生产服务器中。
 但是我们在种情况下，不免会有人为的错误产生，为了避免这种情况我们就可以使用docker技术将服务打包运行，这样服务无论在什么环境都可以达到预期的效果 当然docker还具有更多的有点，比如在虚拟机方面，比较直接的方法是使VMware，但缺点很明显，它属于系统级的，需要安装配置，并占用较多的资源， 而是用docker则可以非常方便的初始化一个虚拟环境，且占用资源更少，因为它可以做到更细的单元，比如tomcat环境，管理更加方便 而目前大热的分布式服务和微服务等docker都能发挥很大的作用，你可以在一台机器上建立N个docker，并且每个docker都是独立互补干扰。 总之，docker是开发与维护过程中非常优秀工具
 玩转第一步，请打开百度 如果你看到这里，想必已经对docker有了一点兴趣，那么我们就快速的把它玩起来，打开百度先搜索docker，找到docker的下载地址
@@ -141,10 +156,10 @@ window 一路安装就好，可能会碰到一些问题，比如Hyper-v报错，
     
     <item>
       <title>Nginx玩法 — 负载均衡</title>
-      <link>http://www.wangxiao4.xyz/blog/nginx_loadbalance/</link>
+      <link>http://www.xiao4.wang/blog/nginx_loadbalance/</link>
       <pubDate>Thu, 25 Feb 2021 17:06:46 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/nginx_loadbalance/</guid>
+      <guid>http://www.xiao4.wang/blog/nginx_loadbalance/</guid>
       <description>Nginx玩法 — 负载均衡 首先我们需要弄清楚负载均衡的含义，负载均衡是通过算法实现平均分配的策略，将数据交互平均分担到集群中的各个服务中，从而提高整体对外服务的可用性，健壮性和性能等。
 负载均衡是Nginx中较为重要的功能，常用于站点级的负载策略之中，相对于使用专属硬件做负载，拥有维护方便，成本低等特点，所以在日常系统中Nginx做负载也是不错的选择。
 举个例子 川菜馆里的多个厨子，为了能够快速响应客户的点餐吃饭的需求，通常需要多个厨子完成不同的菜品， 节省上菜的时间，一但一个厨师请了假，也不会有太大影响，因为有其他厨师顶替他的位置继续服务客户。 这在川菜馆就相当于负载均衡服务器，每个厨师是一个单独的服务  那么在Nginx中如何使用那？ 代码如下
@@ -156,10 +171,10 @@ upstream backend{ server http://127.0.0.1:8080/; server http://127.0.0.1:8081/; 
     
     <item>
       <title>Nginx玩法 — 反向代理</title>
-      <link>http://www.wangxiao4.xyz/blog/reverseproxy/</link>
+      <link>http://www.xiao4.wang/blog/reverseproxy/</link>
       <pubDate>Thu, 25 Feb 2021 14:27:56 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/reverseproxy/</guid>
+      <guid>http://www.xiao4.wang/blog/reverseproxy/</guid>
       <description>Nginx玩法 — 反向代理 Nginx的反向代理是一块比较常用且重要的功能，查看一下关于反向代理的指令，你就体会到有多重要了，否则也不会给出20+的指令，翻看一下在上一篇正向代理用到的指令，一个手的就能数的完了。
 那么在开始愉快玩耍之前还是要先搞清楚，这个反向代理到底是什么意思。
 举个例子  有这么一天，狐朋带着狗友，去市区中心吃饭，由于这地段只有这一家川菜馆，所以生意火爆,川菜馆事先将常见的菜品都准备好， 但是依然无法满足需求量，川菜馆就雇佣了多个大厨，这些大厨手艺有高有低，其中有一个大厨外号“盐不要钱”，恰好给狐朋狗友做菜的就是他， 狐朋狗友吃了这菜后，差点没过去，如果不是餐馆经理拦着估计就是给“盐不要钱”一顿好果子，最终餐厅辞退了“盐不要钱”， 狐朋狗友将剩菜剩饭打包后带走  我们可以将狐朋和狗友看作是客户端，川菜馆看作是反向代理服务器，厨子们是最终的服务器，可以简单看作反向代理包含着最终服务器
@@ -174,10 +189,10 @@ server{ listen 80; server_name localhost; location / { porxy_pass http://127.0.0
     
     <item>
       <title>Nginx玩法 — 正向代理</title>
-      <link>http://www.wangxiao4.xyz/blog/nginx_proxy/</link>
+      <link>http://www.xiao4.wang/blog/nginx_proxy/</link>
       <pubDate>Tue, 23 Feb 2021 17:19:13 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/nginx_proxy/</guid>
+      <guid>http://www.xiao4.wang/blog/nginx_proxy/</guid>
       <description>Nginx玩法 — 正向代理 正向代理
 你请求代理帮你完成某件事情，代理将办理结果通知回你，类似于fan个qiang，访问谷歌，或者VPN。
 举个例子比如：
@@ -194,10 +209,10 @@ Nginx常用命令 1. nginx -v	|	简洁版版本信息 2.</description>
     
     <item>
       <title>抓各种页面数据</title>
-      <link>http://www.wangxiao4.xyz/blog/baidu3/</link>
+      <link>http://www.xiao4.wang/blog/baidu3/</link>
       <pubDate>Fri, 19 Feb 2021 10:14:45 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/baidu3/</guid>
+      <guid>http://www.xiao4.wang/blog/baidu3/</guid>
       <description>新年刚过，还没从假期的懒散状态缓过来，就开始上班了，伸个懒腰，各位新年快乐~
 百度？？？这篇算翻不过去了 朋友总是有很多奇怪的需求，这次他不但想要百度的数据，还希望抓更多其他搜索引擎的数据 针对朋友后面可能会有其他的需求，我想了以下几种方案
 1. 割袍断义，绝交，这样以后都不会有任何需求了 2. 在原有基础上追加新引擎处理方法 3. 重构，将逻辑块封装后，外部脚本控制逻辑的扩展方式  综合当前情况，我并没有太多时间，并且要抓的数据又多种多样，我选择了第一种，并将想法告诉了朋友。 朋友发来了红包，我并不是那种认钱的人，我只是单纯喜欢解决问题而已，果断将红包退回，备注：* 老铁，你不了解我了 朋友很识趣，追加了个零后，又把红包发了过来。 想起这么多年的点点滴滴，大家都忙忙碌碌的，也没怎么好好聊过，也就是这情谊在这能让我们想起彼此，能帮一下就帮一下吧 我收下红包，嘴角洋溢着微笑
@@ -212,10 +227,10 @@ Nginx常用命令 1. nginx -v	|	简洁版版本信息 2.</description>
     
     <item>
       <title>抓百度下拉框内容-续篇</title>
-      <link>http://www.wangxiao4.xyz/blog/bdword/</link>
+      <link>http://www.xiao4.wang/blog/bdword/</link>
       <pubDate>Tue, 09 Feb 2021 11:16:44 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/bdword/</guid>
+      <guid>http://www.xiao4.wang/blog/bdword/</guid>
       <description>百度？？？你又要干嘛 朋友总是有很多奇怪的需求，由于之前给他的抓取方式并不是他心仪的方式，所以这他说如果很难的话就先不要弄了 作为一名身经百战的程序员，这无疑是赤果果的挑衅，那么咱们这次还是抓这个
 那么咱们重新梳理一下思路
 0. 打开电脑，打开浏览器 1. 让程序模拟用户操作，在浏览器的输入框中输入预存的词组 2. 截取当前浏览器的显示截图 3. 程序识别图中内容 4. 将内容保存到本地  如此往复1-4步 完成所有数据抓取
@@ -229,10 +244,10 @@ Nginx常用命令 1. nginx -v	|	简洁版版本信息 2.</description>
     
     <item>
       <title>抓百度下拉框内容</title>
-      <link>http://www.wangxiao4.xyz/blog/bddorpdown/</link>
+      <link>http://www.xiao4.wang/blog/bddorpdown/</link>
       <pubDate>Sun, 07 Feb 2021 09:46:11 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/bddorpdown/</guid>
+      <guid>http://www.xiao4.wang/blog/bddorpdown/</guid>
       <description>百度？？？你要干嘛 朋友总是有很多奇怪的需求，这次他想要百度搜索智能提示的内容，就是这个
 至于他要干吗用，这个并没有太多去问，只是一时兴起，决定白嫖百度一下 开门见山的说，白嫖不好，如果大家有能力还是去购买相应的接口，等我有钱了就买百度云在抓数据😊
 如何做 朋友给了我一个非常机智的方法
@@ -244,10 +259,10 @@ Nginx常用命令 1. nginx -v	|	简洁版版本信息 2.</description>
     
     <item>
       <title>谷歌浏览器代理如何玩</title>
-      <link>http://www.wangxiao4.xyz/blog/chromeproxy/</link>
+      <link>http://www.xiao4.wang/blog/chromeproxy/</link>
       <pubDate>Mon, 01 Feb 2021 11:14:08 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/chromeproxy/</guid>
+      <guid>http://www.xiao4.wang/blog/chromeproxy/</guid>
       <description>谷歌浏览器代理如何玩 在我们玩爬虫的时候，通常需要访问大量的站点，而对百度或者谷歌这类搜索引擎对爬虫通常都有着很强的限制 比如当你的爬虫大量抓取百度的时候，百度会给你提示输入验证码等措施避免你频繁的访问， 当然想要解决这种问题，有很多种方法，比如使用代理，对目标站点隐藏自己的信息， 或者写对应的验证代码，通过验证限制
 当然我认为使用代理是比较方便，且直接的方法 接下来就说说，我遇到的情况 首先先说一下这个小工具的目标，通过批量输入要查询的站点域名，查询域名在不同搜索引擎中的收录情况 包含：百度，谷歌，搜狗，360搜索，Archive 等
 在经过测后发现，通常谷歌浏览器在同时开启50个搜索页面后，会有明显的卡顿，可能和我机器有一定的关系 但是无关紧要，关键的问题是，当同时开启50+的抓取行为后，上述的搜索引擎会弹出验证，这无疑增加了 操作人员的工作量，所以这就是我们现在要处理的问题之一，增加代理访问，绕过验证
@@ -258,10 +273,10 @@ Nginx常用命令 1. nginx -v	|	简洁版版本信息 2.</description>
     
     <item>
       <title>云服务器云空间那点事</title>
-      <link>http://www.wangxiao4.xyz/blog/cloudspace/</link>
+      <link>http://www.xiao4.wang/blog/cloudspace/</link>
       <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/cloudspace/</guid>
+      <guid>http://www.xiao4.wang/blog/cloudspace/</guid>
       <description>免费的服务器到底能不能用 目前市面上的免费服务器有很多，无论大厂小厂还是黑心作坊几乎都会推出一些免费的服务器 用于增加自己的客户量，抢占市场。 而多数小厂在没有知名度的情况下要么各种投放广告，要么就是降低用户投入成本，从而占有一席之地
 目前来说也不能绝对否决小厂的服务器不好，的确我也碰到了一些还不错的厂商，接下来我就盘点一下我玩过的服务器
   八点云 推过一款云空间是免费的，关键是它还支持.net4.5，对于我这个.net方向来说那真是极好的 其他的感觉还不错，需要实名认证，但是需要备案，对于测试来说，还算够用了
@@ -278,29 +293,29 @@ Nginx常用命令 1. nginx -v	|	简洁版版本信息 2.</description>
     
     <item>
       <title>关于《Go语言学习笔记》这本书</title>
-      <link>http://www.wangxiao4.xyz/blog/gonote/</link>
+      <link>http://www.xiao4.wang/blog/gonote/</link>
       <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/gonote/</guid>
+      <guid>http://www.xiao4.wang/blog/gonote/</guid>
       <description>#关于《Go语言学习笔记》这本书
 书如其名，真的算是一本笔记，书中大量篇幅都是代码块，文字介绍较少，基础理论内容也很少， 更多的是对某一些特性和一些用法上做实践，并且如果你细读的话也会发现一些写错的地方。 如果非要嗑这本书 建议先看一遍**《Go by Example 中文版》**，对基本使用和语法有一定了解后再嗑 笔者下卷部分并没有继续看，因为感觉还不到看源码的时候，所以再深造一段时间在回来看一下。 这里粗略的整理一下知识点，没时间看这本书，可以看一下笔者整理的部分，并不全，也只是针对笔者感兴趣的地方进行了整理   defer 延迟操作 无论函数是否发生异常 都会在return后执行 类型别名写法 type myInt = int 类型定义写法 type myInt int 注：类型定义与原始类型无关且不会继承原类型方法 需要强转后才能相互操作 不能前置自增 ++a 不能将自增作为表达式 if(a++)&amp;gt;0 const 常量不能使用取址操作 const a int -&amp;gt; &amp;amp;a 指针指向同一个地址 或者 都为 nil 两个指针相等 当给复合类型赋值时 需要遵守以下规则  必须带有类型名称 var a struct=struct{} {必须紧跟类型后 且在一行 值以 , 隔开 多行情况 尾值以, 或者} 结尾   使用 for range 的时候 for域内将会使用复制后的目标数据，for域内对目标数据操作 不会影响下一次取值，但会影响for域外的目标数据 使用 for range 后的参数如果是方法 那么该方法也只会获取一次 break continue 也可以像 goto 一样增加跳转位置 函数 不支持方法重载，不支持默认参数 ，支持多返回（这点很有意思） 函数采用值拷贝 包括指针类型也是 返回值命名后可以在方法体中当变量使用 最后直接return 无需带返回值 很方便 延迟调用 包括注册和调用，并增加额外的缓存开销，所以性能较直接调用偏低一点 panic和recover是 内置函数 类似于try catch 操作 panic 引发一个错误 recover读取最后一个错误。recover只能在延迟函数 defer 中使用 可以将string看作是byte数组，两者引用地址是相同的，string为只读类型，所以其操作大多需要重新分配内存地址，当有大量使用追加操作，损耗因能严重，并产生相当多的垃圾，建议使用strings.</description>
     </item>
     
     <item>
       <title>Createblog</title>
-      <link>http://www.wangxiao4.xyz/blog/createblog/</link>
+      <link>http://www.xiao4.wang/blog/createblog/</link>
       <pubDate>Wed, 20 Jan 2021 15:59:43 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/createblog/</guid>
+      <guid>http://www.xiao4.wang/blog/createblog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>关于我</title>
-      <link>http://www.wangxiao4.xyz/about/</link>
+      <link>http://www.xiao4.wang/about/</link>
       <pubDate>Fri, 15 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/about/</guid>
+      <guid>http://www.xiao4.wang/about/</guid>
       <description>&amp;mdash; Hi~ 欢迎你~ &amp;mdash;
 我是王小4，一名coder 欢迎来到我的博文空间 我喜欢研究各种新鲜的东西，喜欢解决问题 可能和个人喜好有关系，接触的比较杂，常见的技术我都会去尝试玩一下。 这么多年过去了，这个行业改变了我很多，有好也有坏，如果上天再给我一次选择的机会，我……依然会选择软件 😀  &amp;mdash; 有啥 &amp;mdash;
 1. 一些避坑记录 2. 开发语言使用教程 3. 技术分享 4. 开源小项目 5. 一些稀奇古怪的笔记  &amp;mdash; 提示 &amp;mdash;
@@ -310,10 +325,10 @@ Nginx常用命令 1. nginx -v	|	简洁版版本信息 2.</description>
     
     <item>
       <title>发邮件给我</title>
-      <link>http://www.wangxiao4.xyz/contact/</link>
+      <link>http://www.xiao4.wang/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/contact/</guid>
+      <guid>http://www.xiao4.wang/contact/</guid>
       <description>发送</description>
     </item>
     

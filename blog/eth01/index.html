@@ -87,22 +87,72 @@
             <a href="javascript:void(0)" id="closebtn" onclick="navToggle()"><i class="fas fa-bars fa-lg"></i></a>
             <div class="content">
     
-    <h1 id="title">Createblog</h1>
+    <h1 id="title">GEth 创建私链流程</h1>
     
       
-    <nav id="TableOfContents"></nav>
-    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#geth-创建私链流程">GEth 创建私链流程</a>
+      <ul>
+        <li><a href="#参考文档如下">参考文档如下</a></li>
+        <li><a href="#创世配置">创世配置</a></li>
+        <li><a href="#初始化私链">初始化私链</a></li>
+        <li><a href="#启动私链">启动私链</a></li>
+        <li><a href="#后台启动">后台启动</a></li>
+        <li><a href="#启用自带的测试链">启用自带的测试链</a></li>
+        <li><a href="#测试链替代品">测试链替代品</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    <h2 id="geth-创建私链流程">GEth 创建私链流程</h2>
+<p>geth是go语言开发的以太坊客户端，可以作为数据节点进行使用，同时还可以作为测试网络进行使用。</p>
+<h3 id="参考文档如下">参考文档如下</h3>
+<p>小破站教程：</p>
+<h3 id="创世配置">创世配置</h3>
+<p>老版本</p>
+<pre><code>{
+    &quot;config&quot;:{
+        &quot;chainId&quot;:44
+    },
+    &quot;difficulty&quot;:&quot;2000&quot;,
+    &quot;gasLimit&quot;:&quot;2100000&quot;,
+    &quot;alloc&quot;:{
+        &quot;0x840db68C7C132a75Fe0CFe9A0A664f583dD90f15&quot;:{
+            &quot;balance&quot;:&quot;300000&quot;
+        }
+    }
+}
+chainId：网络id
+difficulty：起始难度
+gasLimit：交易执行时，gas上限
+alloc：初始账户
+balance：初始余额
+</code></pre>
+<p>新版本</p>
+<pre><code>{&quot;config&quot;:{&quot;chainId&quot;:44,&quot;homesteadBlock&quot;:0,&quot;eip150Block&quot;:0,&quot;eip155Block&quot;:0,&quot;eip158Block&quot;:0,&quot;byzantiumBlock&quot;:0,&quot;constantinopleBlock&quot;:0,&quot;petersburgBlock&quot;:0,&quot;istanbulBlock&quot;:0},&quot;alloc&quot;:{&quot;0x840db68C7C132a75Fe0CFe9A0A664f583dD90f15&quot;:{&quot;balance&quot;:&quot;300000000000000000000&quot;}},&quot;coinbase&quot;:&quot;0x0000000000000000000000000000000000000000&quot;,&quot;difficulty&quot;:&quot;0x2000&quot;,&quot;extraData&quot;:&quot;&quot;,&quot;gasLimit&quot;:&quot;0x2fefd8&quot;,&quot;nonce&quot;:&quot;0x0000000000000042&quot;,&quot;mixhash&quot;:&quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;,&quot;parentHash&quot;:&quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;,&quot;timestamp&quot;:&quot;0x00&quot;}
+</code></pre>
+<p>这些配置会随着版本升级发生一些变化，我在本地配置时，使用了最新版本的配置，配合教程使用没有发现异常。</p>
+<h3 id="初始化私链">初始化私链</h3>
+<p>初始化私链只需要一行命令就好,</p>
+<pre><code>geth --datadir &quot;数据存放位置&quot; init 初始化配置.json
+</code></pre>
+<h3 id="启动私链">启动私链</h3>
+<h3 id="后台启动">后台启动</h3>
+<h3 id="启用自带的测试链">启用自带的测试链</h3>
+<h3 id="测试链替代品">测试链替代品</h3>
+
     
     <div class="nav-next-prev">
         <div class="nav-prev">
             
-                <a class="grayed-out" href="javascript:void()"><i class="fas fa-chevron-left"></i></a>
+                <a href="http://www.xiao4.wang/blog/leetcode_hanming/"><i class="fas fa-chevron-left"></i></a>
             
         </div>
         <a class="nav-top" href="#">top</i></a>
         <div class="nav-next">
             
-                <a href="http://www.xiao4.wang/blog/gonote/"><i class="fas fa-chevron-right"></i></a>
+                <a class="grayed-out" href="javascript:void()"><i class="fas fa-chevron-right"></i></a>
             
         </div>
     </div>

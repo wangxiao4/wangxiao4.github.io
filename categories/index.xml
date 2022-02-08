@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Xiao4 800K</title>
-    <link>http://www.wangxiao4.xyz/categories/</link>
+    <link>http://www.xiao4.wang/categories/</link>
     <description>Recent content in Categories on Xiao4 800K</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright><atom:link href="http://www.wangxiao4.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright><atom:link href="http://www.xiao4.wang/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

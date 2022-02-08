@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>leetcode on Xiao4 800K</title>
-    <link>http://www.wangxiao4.xyz/tags/leetcode/</link>
+    <link>http://www.xiao4.wang/tags/leetcode/</link>
     <description>Recent content in leetcode on Xiao4 800K</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Fri, 28 May 2021 11:28:53 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 28 May 2021 11:28:53 +0800</lastBuildDate><atom:link href="http://www.xiao4.wang/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>汉明距离总和</title>
-      <link>http://www.wangxiao4.xyz/blog/leetcode_hanming/</link>
+      <link>http://www.xiao4.wang/blog/leetcode_hanming/</link>
       <pubDate>Fri, 28 May 2021 11:28:53 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/leetcode_hanming/</guid>
+      <guid>http://www.xiao4.wang/blog/leetcode_hanming/</guid>
       <description>简介 力扣日常打卡时碰到了这样一个题，原本一个中级题目没什么好分享的，只是记录一下做题时的心理过程。
 在力扣中，我属于慢刷派，每天都会去刷一下，通常得到第一个版本后，会再优化一下，在我感觉已经到我的极限时，再去看一下，性能最好的答案。
 先说结论：如果你没有不断的尝试，你怎么知道早点放弃才是最快的解决方法，哈哈哈哈哈哈咯~

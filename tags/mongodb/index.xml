@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MongoDB on Xiao4 800K</title>
-    <link>http://www.wangxiao4.xyz/tags/mongodb/</link>
+    <link>http://www.xiao4.wang/tags/mongodb/</link>
     <description>Recent content in MongoDB on Xiao4 800K</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Mon, 05 Apr 2021 09:38:15 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/mongodb/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Apr 2021 09:38:15 +0800</lastBuildDate><atom:link href="http://www.xiao4.wang/tags/mongodb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MongoDB聚合查询</title>
-      <link>http://www.wangxiao4.xyz/blog/mongo_aggregate/</link>
+      <link>http://www.xiao4.wang/blog/mongo_aggregate/</link>
       <pubDate>Mon, 05 Apr 2021 09:38:15 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/mongo_aggregate/</guid>
+      <guid>http://www.xiao4.wang/blog/mongo_aggregate/</guid>
       <description>MongoDB聚合查询概述 MongoDB 高效的文档数据库，可以用于存储类似于
 在使用find查询数据时我们可以拼接过滤条件，以返回符合条件的数据，但通常这些数据都不能直接拿来使用或传递， 需要后台再次加工后返回给前端应用。比如我们查询一个用户所有的博文就是类似的操作，通常个人信息和博文信息是分为两张表进行存储的，如果你想知道指定用户的博文时就需要进行表关联查询，如果你了解关系型数据库，那么就能更好的理解这种操作，因为这种表关联查询操作在日常开发中太常见了~
 在Mongo中Aggregate命令是用于聚合查询的方法，在不增加任何参数的情况下等同于find方法，他的格式如下

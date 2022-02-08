@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C# on Xiao4 800K</title>
-    <link>http://www.wangxiao4.xyz/tags/c#/</link>
+    <link>http://www.xiao4.wang/tags/c#/</link>
     <description>Recent content in C# on Xiao4 800K</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Fri, 19 Feb 2021 10:14:45 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Feb 2021 10:14:45 +0800</lastBuildDate><atom:link href="http://www.xiao4.wang/tags/c#/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>抓各种页面数据</title>
-      <link>http://www.wangxiao4.xyz/blog/baidu3/</link>
+      <link>http://www.xiao4.wang/blog/baidu3/</link>
       <pubDate>Fri, 19 Feb 2021 10:14:45 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/baidu3/</guid>
+      <guid>http://www.xiao4.wang/blog/baidu3/</guid>
       <description>新年刚过，还没从假期的懒散状态缓过来，就开始上班了，伸个懒腰，各位新年快乐~
 百度？？？这篇算翻不过去了 朋友总是有很多奇怪的需求，这次他不但想要百度的数据，还希望抓更多其他搜索引擎的数据 针对朋友后面可能会有其他的需求，我想了以下几种方案
 1. 割袍断义，绝交，这样以后都不会有任何需求了 2. 在原有基础上追加新引擎处理方法 3. 重构，将逻辑块封装后，外部脚本控制逻辑的扩展方式  综合当前情况，我并没有太多时间，并且要抓的数据又多种多样，我选择了第一种，并将想法告诉了朋友。 朋友发来了红包，我并不是那种认钱的人，我只是单纯喜欢解决问题而已，果断将红包退回，备注：* 老铁，你不了解我了 朋友很识趣，追加了个零后，又把红包发了过来。 想起这么多年的点点滴滴，大家都忙忙碌碌的，也没怎么好好聊过，也就是这情谊在这能让我们想起彼此，能帮一下就帮一下吧 我收下红包，嘴角洋溢着微笑

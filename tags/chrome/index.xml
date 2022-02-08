@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>chrome on Xiao4 800K</title>
-    <link>http://www.wangxiao4.xyz/tags/chrome/</link>
+    <link>http://www.xiao4.wang/tags/chrome/</link>
     <description>Recent content in chrome on Xiao4 800K</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Mon, 01 Feb 2021 11:14:08 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Feb 2021 11:14:08 +0800</lastBuildDate><atom:link href="http://www.xiao4.wang/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>谷歌浏览器代理如何玩</title>
-      <link>http://www.wangxiao4.xyz/blog/chromeproxy/</link>
+      <link>http://www.xiao4.wang/blog/chromeproxy/</link>
       <pubDate>Mon, 01 Feb 2021 11:14:08 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/chromeproxy/</guid>
+      <guid>http://www.xiao4.wang/blog/chromeproxy/</guid>
       <description>谷歌浏览器代理如何玩 在我们玩爬虫的时候，通常需要访问大量的站点，而对百度或者谷歌这类搜索引擎对爬虫通常都有着很强的限制 比如当你的爬虫大量抓取百度的时候，百度会给你提示输入验证码等措施避免你频繁的访问， 当然想要解决这种问题，有很多种方法，比如使用代理，对目标站点隐藏自己的信息， 或者写对应的验证代码，通过验证限制
 当然我认为使用代理是比较方便，且直接的方法 接下来就说说，我遇到的情况 首先先说一下这个小工具的目标，通过批量输入要查询的站点域名，查询域名在不同搜索引擎中的收录情况 包含：百度，谷歌，搜狗，360搜索，Archive 等
 在经过测后发现，通常谷歌浏览器在同时开启50个搜索页面后，会有明显的卡顿，可能和我机器有一定的关系 但是无关紧要，关键的问题是，当同时开启50+的抓取行为后，上述的搜索引擎会弹出验证，这无疑增加了 操作人员的工作量，所以这就是我们现在要处理的问题之一，增加代理访问，绕过验证

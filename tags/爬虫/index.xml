@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>爬虫 on Xiao4 800K</title>
-    <link>http://www.wangxiao4.xyz/tags/%E7%88%AC%E8%99%AB/</link>
+    <link>http://www.xiao4.wang/tags/%E7%88%AC%E8%99%AB/</link>
     <description>Recent content in 爬虫 on Xiao4 800K</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Fri, 19 Feb 2021 10:14:45 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Feb 2021 10:14:45 +0800</lastBuildDate><atom:link href="http://www.xiao4.wang/tags/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>抓各种页面数据</title>
-      <link>http://www.wangxiao4.xyz/blog/baidu3/</link>
+      <link>http://www.xiao4.wang/blog/baidu3/</link>
       <pubDate>Fri, 19 Feb 2021 10:14:45 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/baidu3/</guid>
+      <guid>http://www.xiao4.wang/blog/baidu3/</guid>
       <description>新年刚过，还没从假期的懒散状态缓过来，就开始上班了，伸个懒腰，各位新年快乐~
 百度？？？这篇算翻不过去了 朋友总是有很多奇怪的需求，这次他不但想要百度的数据，还希望抓更多其他搜索引擎的数据 针对朋友后面可能会有其他的需求，我想了以下几种方案
 1. 割袍断义，绝交，这样以后都不会有任何需求了 2. 在原有基础上追加新引擎处理方法 3. 重构，将逻辑块封装后，外部脚本控制逻辑的扩展方式  综合当前情况，我并没有太多时间，并且要抓的数据又多种多样，我选择了第一种，并将想法告诉了朋友。 朋友发来了红包，我并不是那种认钱的人，我只是单纯喜欢解决问题而已，果断将红包退回，备注：* 老铁，你不了解我了 朋友很识趣，追加了个零后，又把红包发了过来。 想起这么多年的点点滴滴，大家都忙忙碌碌的，也没怎么好好聊过，也就是这情谊在这能让我们想起彼此，能帮一下就帮一下吧 我收下红包，嘴角洋溢着微笑
@@ -28,10 +28,10 @@
     
     <item>
       <title>抓百度下拉框内容-续篇</title>
-      <link>http://www.wangxiao4.xyz/blog/bdword/</link>
+      <link>http://www.xiao4.wang/blog/bdword/</link>
       <pubDate>Tue, 09 Feb 2021 11:16:44 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/bdword/</guid>
+      <guid>http://www.xiao4.wang/blog/bdword/</guid>
       <description>百度？？？你又要干嘛 朋友总是有很多奇怪的需求，由于之前给他的抓取方式并不是他心仪的方式，所以这他说如果很难的话就先不要弄了 作为一名身经百战的程序员，这无疑是赤果果的挑衅，那么咱们这次还是抓这个
 那么咱们重新梳理一下思路
 0. 打开电脑，打开浏览器 1. 让程序模拟用户操作，在浏览器的输入框中输入预存的词组 2. 截取当前浏览器的显示截图 3. 程序识别图中内容 4. 将内容保存到本地  如此往复1-4步 完成所有数据抓取
@@ -45,10 +45,10 @@
     
     <item>
       <title>抓百度下拉框内容</title>
-      <link>http://www.wangxiao4.xyz/blog/bddorpdown/</link>
+      <link>http://www.xiao4.wang/blog/bddorpdown/</link>
       <pubDate>Sun, 07 Feb 2021 09:46:11 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/bddorpdown/</guid>
+      <guid>http://www.xiao4.wang/blog/bddorpdown/</guid>
       <description>百度？？？你要干嘛 朋友总是有很多奇怪的需求，这次他想要百度搜索智能提示的内容，就是这个
 至于他要干吗用，这个并没有太多去问，只是一时兴起，决定白嫖百度一下 开门见山的说，白嫖不好，如果大家有能力还是去购买相应的接口，等我有钱了就买百度云在抓数据😊
 如何做 朋友给了我一个非常机智的方法
@@ -60,10 +60,10 @@
     
     <item>
       <title>谷歌浏览器代理如何玩</title>
-      <link>http://www.wangxiao4.xyz/blog/chromeproxy/</link>
+      <link>http://www.xiao4.wang/blog/chromeproxy/</link>
       <pubDate>Mon, 01 Feb 2021 11:14:08 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/chromeproxy/</guid>
+      <guid>http://www.xiao4.wang/blog/chromeproxy/</guid>
       <description>谷歌浏览器代理如何玩 在我们玩爬虫的时候，通常需要访问大量的站点，而对百度或者谷歌这类搜索引擎对爬虫通常都有着很强的限制 比如当你的爬虫大量抓取百度的时候，百度会给你提示输入验证码等措施避免你频繁的访问， 当然想要解决这种问题，有很多种方法，比如使用代理，对目标站点隐藏自己的信息， 或者写对应的验证代码，通过验证限制
 当然我认为使用代理是比较方便，且直接的方法 接下来就说说，我遇到的情况 首先先说一下这个小工具的目标，通过批量输入要查询的站点域名，查询域名在不同搜索引擎中的收录情况 包含：百度，谷歌，搜狗，360搜索，Archive 等
 在经过测后发现，通常谷歌浏览器在同时开启50个搜索页面后，会有明显的卡顿，可能和我机器有一定的关系 但是无关紧要，关键的问题是，当同时开启50+的抓取行为后，上述的搜索引擎会弹出验证，这无疑增加了 操作人员的工作量，所以这就是我们现在要处理的问题之一，增加代理访问，绕过验证

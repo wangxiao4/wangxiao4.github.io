@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>服务器 on Xiao4 800K</title>
-    <link>http://www.wangxiao4.xyz/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <link>http://www.xiao4.wang/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
     <description>Recent content in 服务器 on Xiao4 800K</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Tue, 26 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://www.xiao4.wang/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>云服务器云空间那点事</title>
-      <link>http://www.wangxiao4.xyz/blog/cloudspace/</link>
+      <link>http://www.xiao4.wang/blog/cloudspace/</link>
       <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/cloudspace/</guid>
+      <guid>http://www.xiao4.wang/blog/cloudspace/</guid>
       <description>免费的服务器到底能不能用 目前市面上的免费服务器有很多，无论大厂小厂还是黑心作坊几乎都会推出一些免费的服务器 用于增加自己的客户量，抢占市场。 而多数小厂在没有知名度的情况下要么各种投放广告，要么就是降低用户投入成本，从而占有一席之地
 目前来说也不能绝对否决小厂的服务器不好，的确我也碰到了一些还不错的厂商，接下来我就盘点一下我玩过的服务器
   八点云 推过一款云空间是免费的，关键是它还支持.net4.5，对于我这个.net方向来说那真是极好的 其他的感觉还不错，需要实名认证，但是需要备案，对于测试来说，还算够用了

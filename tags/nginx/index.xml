@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nginx on Xiao4 800K</title>
-    <link>http://www.wangxiao4.xyz/tags/nginx/</link>
+    <link>http://www.xiao4.wang/tags/nginx/</link>
     <description>Recent content in Nginx on Xiao4 800K</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
     <copyright>版权所有©2019–2021，Xiao4 800K；保留所有权利。</copyright>
-    <lastBuildDate>Thu, 25 Feb 2021 17:06:46 +0800</lastBuildDate><atom:link href="http://www.wangxiao4.xyz/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Feb 2021 17:06:46 +0800</lastBuildDate><atom:link href="http://www.xiao4.wang/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nginx玩法 — 负载均衡</title>
-      <link>http://www.wangxiao4.xyz/blog/nginx_loadbalance/</link>
+      <link>http://www.xiao4.wang/blog/nginx_loadbalance/</link>
       <pubDate>Thu, 25 Feb 2021 17:06:46 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/nginx_loadbalance/</guid>
+      <guid>http://www.xiao4.wang/blog/nginx_loadbalance/</guid>
       <description>Nginx玩法 — 负载均衡 首先我们需要弄清楚负载均衡的含义，负载均衡是通过算法实现平均分配的策略，将数据交互平均分担到集群中的各个服务中，从而提高整体对外服务的可用性，健壮性和性能等。
 负载均衡是Nginx中较为重要的功能，常用于站点级的负载策略之中，相对于使用专属硬件做负载，拥有维护方便，成本低等特点，所以在日常系统中Nginx做负载也是不错的选择。
 举个例子 川菜馆里的多个厨子，为了能够快速响应客户的点餐吃饭的需求，通常需要多个厨子完成不同的菜品， 节省上菜的时间，一但一个厨师请了假，也不会有太大影响，因为有其他厨师顶替他的位置继续服务客户。 这在川菜馆就相当于负载均衡服务器，每个厨师是一个单独的服务  那么在Nginx中如何使用那？ 代码如下
@@ -25,10 +25,10 @@ upstream backend{ server http://127.0.0.1:8080/; server http://127.0.0.1:8081/; 
     
     <item>
       <title>Nginx玩法 — 反向代理</title>
-      <link>http://www.wangxiao4.xyz/blog/reverseproxy/</link>
+      <link>http://www.xiao4.wang/blog/reverseproxy/</link>
       <pubDate>Thu, 25 Feb 2021 14:27:56 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/reverseproxy/</guid>
+      <guid>http://www.xiao4.wang/blog/reverseproxy/</guid>
       <description>Nginx玩法 — 反向代理 Nginx的反向代理是一块比较常用且重要的功能，查看一下关于反向代理的指令，你就体会到有多重要了，否则也不会给出20+的指令，翻看一下在上一篇正向代理用到的指令，一个手的就能数的完了。
 那么在开始愉快玩耍之前还是要先搞清楚，这个反向代理到底是什么意思。
 举个例子  有这么一天，狐朋带着狗友，去市区中心吃饭，由于这地段只有这一家川菜馆，所以生意火爆,川菜馆事先将常见的菜品都准备好， 但是依然无法满足需求量，川菜馆就雇佣了多个大厨，这些大厨手艺有高有低，其中有一个大厨外号“盐不要钱”，恰好给狐朋狗友做菜的就是他， 狐朋狗友吃了这菜后，差点没过去，如果不是餐馆经理拦着估计就是给“盐不要钱”一顿好果子，最终餐厅辞退了“盐不要钱”， 狐朋狗友将剩菜剩饭打包后带走  我们可以将狐朋和狗友看作是客户端，川菜馆看作是反向代理服务器，厨子们是最终的服务器，可以简单看作反向代理包含着最终服务器
@@ -43,10 +43,10 @@ server{ listen 80; server_name localhost; location / { porxy_pass http://127.0.0
     
     <item>
       <title>Nginx玩法 — 正向代理</title>
-      <link>http://www.wangxiao4.xyz/blog/nginx_proxy/</link>
+      <link>http://www.xiao4.wang/blog/nginx_proxy/</link>
       <pubDate>Tue, 23 Feb 2021 17:19:13 +0800</pubDate>
       
-      <guid>http://www.wangxiao4.xyz/blog/nginx_proxy/</guid>
+      <guid>http://www.xiao4.wang/blog/nginx_proxy/</guid>
       <description>Nginx玩法 — 正向代理 正向代理
 你请求代理帮你完成某件事情，代理将办理结果通知回你，类似于fan个qiang，访问谷歌，或者VPN。
 举个例子比如：
